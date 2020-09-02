@@ -1,0 +1,352 @@
+swagger: '2.0'
+info:
+  title: 'WEC DEVOPS K8S APP API'
+  description: 'SaaS云管理平台 - 智校云 - K8S平台部署接口'
+  version: '1.0.0'
+tags:
+  - name: 'wec-devops-k8s'
+schemes:
+  - 'http'
+host: 'res.wisedu.com:8000'
+basePath: '/wec-devops-k8s'
+paths:
+  /k8sService/serviceHome:
+    post:
+      tags:
+        - 'fe-res-list'
+      summary: '服务列表'
+      description: '查看'
+      operationId: 'serviceHome'
+      consumes:
+        - 'application/json'
+      produces:
+        - 'application/json'
+      parameters:
+        - name: 'serviceRequest'
+          in: 'body'
+          required: true
+          description: '请求'
+          schema:
+            $ref: '#/definitions/serviceRequest'
+      responses:
+        200:
+          description: '请求成功'
+          schema:
+            type: 'object'
+            properties:
+              code:
+                x-chance-type: fixed
+                x-type-value: 0
+                type: 'integer'
+                description: '操作状态码（0：成功，999：失败）'
+              message:
+                type: 'string'
+                description: '请求成功相关信息'
+              datas:
+                type: 'object'
+                properties:
+                  rows:
+                    type: 'array'
+                    items:
+                      $ref: '#/definitions/serviceListResponse'
+
+  /k8sService/serviceDetail:
+    post:
+      tags:
+        - 'fe-res-detail'
+      summary: '服务详情'
+      description: '查看详情'
+      operationId: 'serviceDetail'
+      consumes:
+        - 'application/json'
+      produces:
+        - 'application/json'
+      parameters:
+        - name: 'serviceRequest'
+          in: 'body'
+          required: true
+          description: '请求'
+          schema:
+            $ref: '#/definitions/serviceDetailRequest'
+      responses:
+        200:
+          description: '请求成功'
+          schema:
+            type: 'object'
+            properties:
+              code:
+                x-chance-type: fixed
+                x-type-value: 0
+                type: 'integer'
+                description: '操作状态码（0：成功，999：失败）'
+              message:
+                type: 'string'
+                description: '请求成功相关信息'
+              datas:
+                type: 'object'
+                properties:
+                  rows:
+                    type: 'array'
+                    items:
+                      $ref: '#/definitions/serviceListResponse'
+
+  /k8sService/serviceCreateOrEdit:
+    post:
+      tags:
+        - 'fe-res-edit'
+      summary: ''
+      description: '编辑服务'
+      operationId: 'edit'
+      consumes:
+        - 'application/json'
+      produces:
+        - 'application/json'
+      parameters:
+        - name: 'serviceEditRequest'
+          in: 'body'
+          required: true
+          description: '请求'
+          schema:
+            $ref: '#/definitions/serviceEditRequest'
+      responses:
+        200:
+          description: '请求成功'
+          schema:
+            type: 'object'
+            properties:
+              code:
+                x-chance-type: fixed
+                x-type-value: 0
+                type: 'integer'
+                description: '操作状态码（0：成功，999：失败）'
+              message:
+                type: 'string'
+                description: '请求成功相关信息'
+
+  /k8sService/serviceDelete:
+    post:
+      tags:
+        - 'fe-res-del'
+      summary: '删除服务'
+      operationId: 'del'
+      consumes:
+        - 'application/json'
+      produces:
+        - 'application/json'
+      parameters:
+        - name: 'serviceDeleteRequest'
+          in: 'body'
+          required: true
+          description: '请求'
+          schema:
+            $ref: '#/definitions/serviceDeleteRequest'
+      responses:
+        200:
+          description: '请求成功'
+          schema:
+            type: 'object'
+            properties:
+              code:
+                x-chance-type: fixed
+                x-type-value: 0
+                type: 'integer'
+                description: '操作状态码（0：成功，999：失败）'
+              message:
+                type: 'string'
+                description: '请求成功相关信息'
+
+  /k8sService/podDelete:
+    post:
+      tags:
+        - 'fe-res-del'
+      summary: '删除POD'
+      operationId: 'delPod'
+      consumes:
+        - 'application/json'
+      produces:
+        - 'application/json'
+      parameters:
+        - name: 'servicePodDeleteRequest'
+          in: 'body'
+          required: true
+          description: '请求'
+          schema:
+            $ref: '#/definitions/servicePodDeleteRequest'
+      responses:
+        200:
+          description: '请求成功'
+          schema:
+            type: 'object'
+            properties:
+              code:
+                x-chance-type: fixed
+                x-type-value: 0
+                type: 'integer'
+                description: '操作状态码（0：成功，999：失败）'
+              message:
+                type: 'string'
+                description: '请求成功相关信息'
+
+definitions:
+  serviceRequest:
+    type: 'object'
+    properties:
+      name:
+        type: 'string'
+        description: '名称'
+      version:
+        type: 'string'
+        description: '版本号'
+
+  serviceDeleteRequest:
+    type: 'object'
+    properties:
+      name:
+        type: 'string'
+        description: '名称'
+      version:
+        type: 'string'
+        description: '版本号'
+      uuid:
+        type: 'string'
+        description: '同一版本的标识，多个使用,分割'
+
+  servicePodDeleteRequest:
+    type: 'object'
+    properties:
+      wids:
+        type: 'array'
+        description: '多个wid'
+        items:
+          $ref: 'string'
+
+  serviceDetailRequest:
+    type: 'object'
+    properties:
+      name:
+        type: 'string'
+        description: '名称'
+      version:
+        type: 'string'
+        description: '版本号'
+      uuid:
+        type: 'string'
+        description: '同一版本的标识，多个使用,分割'
+      platform:
+        type: 'string'
+        description: '平台（1：为web、2：dubbo）'
+      enableOuterAccessFlag:
+        type: 'string'
+        description: '集群外是否可访问（0：非、1：是）'
+
+  serviceEditRequest:
+    type: 'object'
+    properties:
+      name:
+        type: 'string'
+        description: '名称'
+      version:
+        type: 'string'
+        description: '版本号'
+      uuid:
+        type: 'string'
+        description: '同一版本的标识，多个使用,分割'
+      num:
+        type: 'integer'
+        description: '节点数'
+      image:
+        type: 'string'
+        description: '镜像地址'
+      log:
+        type: 'string'
+        description: '日志目录'
+      requestsCPU:
+        type: 'string'
+        description: '运行必须CPU'
+      requestsMemory:
+        type: 'string'
+        description: '运行必须内存'
+      platform:
+        type: 'string'
+        description: '平台（1：为web、2：dubbo）'
+      enableOuterAccessFlag:
+        type: 'string'
+        description: '集群外是否可访问（0：非、1：是）'
+      operFlag:
+        type: 'string'
+        description: '操作标识（1：新增、2：修改）'
+
+  serviceListResponse:
+    type: 'object'
+    properties:
+      rows:
+        type: 'array'
+        items:
+          $ref: '#/definitions/serviceBean'
+
+  serviceBean:
+    type: 'object'
+    properties:
+      wid:
+        type: 'string'
+        description: 'pod唯一标识'
+      name:
+        type: 'string'
+        description: '名称'
+      version:
+        type: 'string'
+        description: '版本号'
+      node:
+        type: 'string'
+        description: '宿主机器'
+      labelName:
+        type: 'string'
+        description: '标签名称'
+      labelVersion:
+        type: 'string'
+        description: '标签版本'
+      labelUUID:
+        type: 'string'
+        description: '同一版本的标识，多个使用'
+      availableReplicas:
+        type: 'integer'
+        description: '可用节点数'
+      replicas:
+        type: 'integer'
+        description: '总节点数'
+      image:
+        type: 'string'
+        description: '镜像地址'
+      log:
+        type: 'string'
+        description: '日志目录'
+      requestsCPU:
+        type: 'string'
+        description: '运行必须CPU'
+      ip:
+        type: 'string'
+        description: 'pod的ip地址'
+      port:
+        type: 'integer'
+        description: 'pod的端口号'
+      requestsMemory:
+        type: 'string'
+        description: '运行必须内存'
+      createTime:
+        type: 'string'
+        description: '创建时间'
+      lastUpdateTime:
+        type: 'string'
+        description: '最后修改时间'
+      platform:
+        type: 'string'
+        description: '平台（1：为web、2：dubbo）'
+      enableOuterAccessFlag:
+        type: 'string'
+        description: '集群外是否可访问（0：非、1：是）'
+      status:
+        type: 'string'
+        description: '状态（1：成功、2：失败、3：等待）'
+      reason:
+        type: 'string'
+        description: '失败描述'

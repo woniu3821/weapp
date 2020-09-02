@@ -1,0 +1,59 @@
+/* eslint-disable */
+/**
+ * 本文件由工具自动生成，请勿随意改动！！！
+ * @name {{title}}
+ * @description {{description}}
+ * @tutorial {{fileUrl}}
+ */
+import api from './api'
+
+import { awaitWrap } from '@/common/tools'
+
+// 此处第二个参数vm，就是我们在页面使用的this，你可以通过vm获取vuex等操作，更多内容详见uView对拦截器的介绍部分：
+// https://uviewui.com/js/http.html#%E4%BD%95%E8%B0%93%E8%AF%B7%E6%B1%82%E6%8B%A6%E6%88%AA%EF%BC%9F
+
+const apis={}
+
+const install = (Vue, vm) => {
+	{{#each apis}}
+	/**
+	 * {{description}}
+	{{#if paramIsArray}}
+	 * @param { Object } params 请求参数
+	{{#each params}}
+	 * @param { {{type}} } params['{{name}}'] {{description}}
+	{{/each}}
+	{{/if}}
+	{{#if paramIsObj}}
+	 * @param { Array } params 请求参数
+	{{#each params.items}}
+	 * @param { {{type}} } params[]['{{name}}'] {{description}}
+	{{/each}}
+	{{/if}}
+	 */
+	const  {{apiName}} = async (params={}) => {
+	    // send request
+	    {{#if defaultParams}}
+	    params = Object.assign({
+	        {{#each defaultParams}}
+	        {{name}}: {{value}},
+	        {{/each}}
+	    }, params)
+	    {{/if}}
+	    return awaitWrap(vm.$u.{{method}}(api.{{name}}, params))
+	}
+	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
+	apis.{{apiName}}={{apiName}}
+	{{/each}}
+	
+	vm.$u.api =apis
+}
+
+export default {
+	install
+}
+
+
+
+
+
