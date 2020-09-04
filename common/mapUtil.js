@@ -187,24 +187,79 @@ export function getZoom(pointArray) {
 	let zoom = ['10', '20', '50', '50', '100', '200', '500', '1000', '20000', '50000', '100000', '200000', '500000',
 		'500000', '1000000', '2000000', '5000000', '10000000'
 	] // 级别18到3。
-	
-	if(pointArray.length<=1){
+
+	if (pointArray.length <= 1) {
 		return 17;
 	}
-	
-	
+
+
 	const point = getMinAndMaxPiont(pointArray)
-	
-	const pointA={longitude:parseFloat(point.min.longitude).toFixed(4),latitude:parseFloat(point.min.latitude).toFixed(4)}
-	
-	const pointB={longitude:parseFloat(point.max.longitude).toFixed(4),latitude:parseFloat(point.max.latitude).toFixed(4)}
-	
-	let distance = getDistance(pointA, pointB).toFixed(1) 
+
+	const pointA = {
+		longitude: parseFloat(point.min.longitude).toFixed(4),
+		latitude: parseFloat(point.min.latitude).toFixed(4)
+	}
+
+	const pointB = {
+		longitude: parseFloat(point.max.longitude).toFixed(4),
+		latitude: parseFloat(point.max.latitude).toFixed(4)
+	}
+
+	let distance = getDistance(pointA, pointB).toFixed(1)
 	// 获取两点距离,保留小数点后两位
-	console.log(distance)
 	for (let i = 0, zoomLen = zoom.length; i < zoomLen; i++) {
 		if (zoom[i] - distance > 0) {
 			return 19 - i + 3 // 之所以会多3，是因为地图范围常常是比例尺距离的10倍以上。所以级别会增加3。
 		}
 	};
+}
+
+
+
+
+export function getPermission() {
+	//获取位置授权
+	return new Promise((resolve) => {
+		uni.getSetting({
+			success: function(res) {
+				var statu = res.authSetting;
+				if (!statu['scope.userLocation']) {
+					uni.authorize({
+						scope: 'scope.userLocation',
+						success() {
+
+							resolve(true)
+						},
+						fail() {
+							uni.showModal({
+								content: '检测到您没打开定位权限，是否去设置打开？',
+								confirmText: "确认",
+								cancelText: "取消",
+								success: function(res) {
+									//点击“确认”时打开设置页面
+									if (res.confirm) {
+										uni.openSetting({
+											success: (res) => {
+												var statu = res.authSetting;
+												if (statu['scope.userLocation']) {
+
+
+													resolve(true)
+												}
+											}
+										})
+									} else {
+										resolve(false)
+									}
+								}
+							});
+
+						}
+
+					})
+				}
+			}
+		})
+	})
+
 }
