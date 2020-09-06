@@ -41,26 +41,26 @@ const store = new Vuex.Store({
 		vuex_permission: lifeData.vuex_permission ? lifeData.vuex_permission : false,
 		// 自定义tabbar数据
 		vuex_tabbar: [{
-				iconPath: "/static/uview/example/component.png",
-				selectedIconPath: "/static/uview/example/component_select.png",
+				iconPath: "/static/img/home.png",
+				selectedIconPath: "/static/img/home_active.png",
 				text: '首页',
 				pagePath: '/pages/home/main'
 			},
 			{
-				iconPath: "/static/uview/example/js.png",
-				selectedIconPath: "/static/uview/example/js_select.png",
+				iconPath: "/static/img/wd.png",
+				selectedIconPath: "/static/img/wd_active.png",
 				text: '大户/网点信息',
 				pagePath: '/pages/outlets/main'
 			},
 			{
-				iconPath: "/static/uview/example/template.png",
-				selectedIconPath: "/static/uview/example/template_select.png",
+				iconPath: "/static/img/gys.png",
+				selectedIconPath: "/static/img/gys_active.png",
 				text: '供应商管理',
 				pagePath: '/pages/supplier/main'
 			},
 			{
-				iconPath: "/static/uview/example/template.png",
-				selectedIconPath: "/static/uview/example/template_select.png",
+				iconPath: "/static/img/my.png",
+				selectedIconPath: "/static/img/my_active.png",
 				text: '我的',
 				pagePath: '/pages/my/main'
 			}

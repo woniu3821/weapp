@@ -65,22 +65,22 @@ text {
 
 .u-item-title {
 	position: relative;
-	font-size: 28rpx;
+	font-size: 32rpx;
 	padding-left: 8px;
 	line-height: 1;
 	margin-bottom: 22rpx;
+	color:#333;
 }
 
 .u-item-title:after {
 	position: absolute;
 	width: 4px;
-	top: -1px;
-	height: 16px;
+	height: 32rpx;
 	/* #ifndef APP-NVUE */
 	content: '';
 	/* #endif */
 	left: 0;
 	border-radius: 10px;
-	background-color: $u-content-color;
+	background-color: #50dab0;
 }
 /* end--演示页面使用的统一样式--end */
