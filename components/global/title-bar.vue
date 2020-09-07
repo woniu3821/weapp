@@ -10,7 +10,9 @@
 </template>
 
 <script>
-
+export default{
+	name:'TitleBar'
+}
 </script>
 
 <style lang="scss" scoped>

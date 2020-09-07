@@ -7,20 +7,20 @@
 			</view>
 		</view>
 		<view v-if="active===0" class="container">
-			<titleBar>工商信息</titleBar>
+			<title-bar>工商信息</title-bar>
 			<view class="image-box">
 				<image src="../../../static/img/gsxxb.png" mode="aspectFit"></image>
 			</view>
 		</view>
 		<view v-else-if="active===1" class="container">
-			<titleBar>肥料质检报告</titleBar>
+			<title-bar>肥料质检报告</title-bar>
 			<view class="image-box">
 				<image src="../../../static/img/zjbb.png" mode="aspectFit"></image>
 			</view>
 		</view>
 		<template v-else>
 			<view class="container scroll">
-				<titleBar>商品管理</titleBar>
+				<title-bar>商品管理</title-bar>
 				<view class="scroll-box">
 					<scroll-view scroll-y class="scroll-view" @scrolltolower="reachBottom">
 						<view class="page-box">
@@ -45,11 +45,9 @@
 	</view>
 </template>
 <script>
-	import titleBar from '@/components/title-bar.vue'
 	import List from './list.vue'
 	export default {
 		components: {
-			titleBar,
 			List
 		},
 		data() {
