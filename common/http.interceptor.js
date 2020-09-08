@@ -2,7 +2,7 @@
 // 同时，我们也可以在此使用getApp().globalData，如果你把token放在getApp().globalData的话，也是可以使用的
 const install = (Vue, vm) => {
 	Vue.prototype.$u.http.setConfig({
-		baseUrl: '/wec-devops-k8s',
+		baseUrl: 'http://172.31.16.244:8080/heter-web-api',
 		// 如果将此值设置为true，拦截回调中将会返回服务端返回的所有数据response，而不是response.data
 		// 设置为true后，就需要在this.$u.http.interceptor.response进行多一次的判断，请打印查看具体值
 		// originalData: true, 
@@ -13,7 +13,7 @@ const install = (Vue, vm) => {
 	});
 	// 请求拦截，配置Token等参数
 	Vue.prototype.$u.http.interceptor.request = (config) => {
-		config.header.Token = 'xxxxxx';
+		// config.header.Token = 'xxxxxx';
 		
 		// 方式一，存放在vuex的token，假设使用了uView封装的vuex方式，见：https://uviewui.com/components/globalVariable.html
 		// config.header.token = vm.token;
@@ -37,7 +37,9 @@ const install = (Vue, vm) => {
 		if(res.code == 200) {
 			// 如果把originalData设置为了true，这里return回什么，this.$u.post的then回调中就会得到什么
 			return res.data;  
-		} else return false;
+		} else {
+			return false;
+		}
 	}
 }
 

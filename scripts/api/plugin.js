@@ -8,16 +8,19 @@ module.exports = {
     config.plugin("init", config => {
       // 处理初始化参数
       // console.log("init", config);
+	  
     });
 
     config.plugin("before-parse", (data, config) => {
       // yaml 转换的原始 json 数据，直接处理
       // console.log("--before-parse");
+	   
     });
 
     config.plugin("after-parse", (data, config) => {
       // 用于渲染模板的 json 数据，直接处理
       // console.log("--after-parse");
+	
     });
 
     config.plugin("before-params", (params, path) => {
@@ -33,7 +36,9 @@ module.exports = {
 
     config.plugin("api-template", (template, data) => {
       // API 文件模板处理，使用返回值覆盖
-
+	  
+	  
+	  
       return fs.readFileSync(API_TMPL, "utf8");
     });
 

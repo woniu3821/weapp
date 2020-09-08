@@ -92,7 +92,7 @@ export default {
 		const { windowWidth, windowHeight } = uni.getSystemInfoSync();
 		this.fullHeight = 'height:' + windowHeight + 'px';
 		this.initMap();
-		this.$u.api.serviceHome();
+		this.$u.api.postUcUserGetuserbasicinfo();
 	}
 };
 </script>

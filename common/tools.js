@@ -5,16 +5,18 @@ var coordtransform=require('coordtransform');
  export const awaitWrap = (promise) =>
   promise
     .then((res) => {
-      if (
-        res.status === 200 &&
-        (res.data.status === 200 || res.data.code === '0')
+		
+      if (res&&res.status === 200 &&
+        (res.data.status === 200 || res.data.code === 200)
       ) {
-        return [null, res.data.datas];
+		 
+        return [null, res.data.result];
       }
-      const msg = res.data.message || res.data.datas.message;
+      const msg = res.data.message;
       return [msg ? msg : '错误', null];
     })
     .catch((err) => {
+		 console.log(err)
       const msg = typeof err === 'object' ? err.message : err;
       return [msg, null];
     });

@@ -6,8 +6,8 @@ module.exports = {
 			disableHostCheck: true,
 			port: '8080', // 代理断就
 			proxy: {
-				'/wec-devops-k8s': {
-					target: 'http://iwecloud12:31559/', // 目标代理接口地址
+				'/heter-web-api': {
+					target: 'http://172.31.16.244:8080', // 目标代理接口地址
 					// target: 'http://iwecloud18:31185/', // 目标代理接口地址
 					secure: false,
 					// onProxyReq: cookie,

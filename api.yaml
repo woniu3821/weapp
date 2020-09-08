@@ -1,352 +1,742 @@
 swagger: '2.0'
 info:
-  title: 'WEC DEVOPS K8S APP API'
-  description: 'SaaS云管理平台 - 智校云 - K8S平台部署接口'
-  version: '1.0.0'
-tags:
-  - name: 'wec-devops-k8s'
+  title: '自动生成api'
+  description: '在下方手动添加接口可自动生成'
 schemes:
   - 'http'
-host: 'res.wisedu.com:8000'
-basePath: '/wec-devops-k8s'
+basePath: ''
 paths:
-  /k8sService/serviceHome:
+  /announcement/addAnnouncement:
     post:
-      tags:
-        - 'fe-res-list'
-      summary: '服务列表'
-      description: '查看'
-      operationId: 'serviceHome'
-      consumes:
-        - 'application/json'
-      produces:
-        - 'application/json'
+      description: '添加公告信息'
       parameters:
-        - name: 'serviceRequest'
-          in: 'body'
-          required: true
-          description: '请求'
-          schema:
-            $ref: '#/definitions/serviceRequest'
+        - name: ''
       responses:
         200:
           description: '请求成功'
-          schema:
-            type: 'object'
-            properties:
-              code:
-                x-chance-type: fixed
-                x-type-value: 0
-                type: 'integer'
-                description: '操作状态码（0：成功，999：失败）'
-              message:
-                type: 'string'
-                description: '请求成功相关信息'
-              datas:
-                type: 'object'
-                properties:
-                  rows:
-                    type: 'array'
-                    items:
-                      $ref: '#/definitions/serviceListResponse'
 
-  /k8sService/serviceDetail:
+  /announcement/deleteAnnouncement:
+   post:
+    description: '删除公告信息'
+    parameters:
+      - name: ''
+    responses:
+      200:
+        description: '请求成功'
+
+  /announcement/getAnnouncement:
+   post:
+    description: 获取公告信息
+    parameters:
+      - name: ''
+    responses:
+      200:
+        description: '请求成功'
+
+  /announcement/listAnnouncement:
     post:
-      tags:
-        - 'fe-res-detail'
-      summary: '服务详情'
-      description: '查看详情'
-      operationId: 'serviceDetail'
-      consumes:
-        - 'application/json'
-      produces:
-        - 'application/json'
+      description: 列表公告信息
       parameters:
-        - name: 'serviceRequest'
-          in: 'body'
-          required: true
-          description: '请求'
-          schema:
-            $ref: '#/definitions/serviceDetailRequest'
+        - name: ''
       responses:
         200:
           description: '请求成功'
-          schema:
-            type: 'object'
-            properties:
-              code:
-                x-chance-type: fixed
-                x-type-value: 0
-                type: 'integer'
-                description: '操作状态码（0：成功，999：失败）'
-              message:
-                type: 'string'
-                description: '请求成功相关信息'
-              datas:
-                type: 'object'
-                properties:
-                  rows:
-                    type: 'array'
-                    items:
-                      $ref: '#/definitions/serviceListResponse'
 
-  /k8sService/serviceCreateOrEdit:
+  /announcement/listReadAnnouncement:
     post:
-      tags:
-        - 'fe-res-edit'
-      summary: ''
-      description: '编辑服务'
-      operationId: 'edit'
-      consumes:
-        - 'application/json'
-      produces:
-        - 'application/json'
+      description: 获取未读列表
       parameters:
-        - name: 'serviceEditRequest'
-          in: 'body'
-          required: true
-          description: '请求'
-          schema:
-            $ref: '#/definitions/serviceEditRequest'
+        - name: ''
       responses:
         200:
           description: '请求成功'
-          schema:
-            type: 'object'
-            properties:
-              code:
-                x-chance-type: fixed
-                x-type-value: 0
-                type: 'integer'
-                description: '操作状态码（0：成功，999：失败）'
-              message:
-                type: 'string'
-                description: '请求成功相关信息'
 
-  /k8sService/serviceDelete:
+  /announcement/queryAnnouncementsPage:
     post:
-      tags:
-        - 'fe-res-del'
-      summary: '删除服务'
-      operationId: 'del'
-      consumes:
-        - 'application/json'
-      produces:
-        - 'application/json'
+      description: 查询公告信息
       parameters:
-        - name: 'serviceDeleteRequest'
-          in: 'body'
-          required: true
-          description: '请求'
-          schema:
-            $ref: '#/definitions/serviceDeleteRequest'
+        - name: ''
       responses:
         200:
           description: '请求成功'
-          schema:
-            type: 'object'
-            properties:
-              code:
-                x-chance-type: fixed
-                x-type-value: 0
-                type: 'integer'
-                description: '操作状态码（0：成功，999：失败）'
-              message:
-                type: 'string'
-                description: '请求成功相关信息'
 
-  /k8sService/podDelete:
+  /announcement/readAnnouncements:
     post:
-      tags:
-        - 'fe-res-del'
-      summary: '删除POD'
-      operationId: 'delPod'
-      consumes:
-        - 'application/json'
-      produces:
-        - 'application/json'
+      description: 获取未读列表
       parameters:
-        - name: 'servicePodDeleteRequest'
-          in: 'body'
-          required: true
-          description: '请求'
-          schema:
-            $ref: '#/definitions/servicePodDeleteRequest'
+        - name: ''
       responses:
         200:
           description: '请求成功'
-          schema:
-            type: 'object'
-            properties:
-              code:
-                x-chance-type: fixed
-                x-type-value: 0
-                type: 'integer'
-                description: '操作状态码（0：成功，999：失败）'
-              message:
-                type: 'string'
-                description: '请求成功相关信息'
 
-definitions:
-  serviceRequest:
-    type: 'object'
-    properties:
-      name:
-        type: 'string'
-        description: '名称'
-      version:
-        type: 'string'
-        description: '版本号'
+  /announcement/updateAnnouncement:
+    post:
+      description: 更新公告信息
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
 
-  serviceDeleteRequest:
-    type: 'object'
-    properties:
-      name:
-        type: 'string'
-        description: '名称'
-      version:
-        type: 'string'
-        description: '版本号'
-      uuid:
-        type: 'string'
-        description: '同一版本的标识，多个使用,分割'
+  /auth/code:
+    get:
+      description: 校验验证码
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
 
-  servicePodDeleteRequest:
-    type: 'object'
-    properties:
-      wids:
-        type: 'array'
-        description: '多个wid'
-        items:
-          $ref: 'string'
+  /chinaArea/addChinaArea:
+    post:
+      description: 添加地址库信息
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
 
-  serviceDetailRequest:
-    type: 'object'
-    properties:
-      name:
-        type: 'string'
-        description: '名称'
-      version:
-        type: 'string'
-        description: '版本号'
-      uuid:
-        type: 'string'
-        description: '同一版本的标识，多个使用,分割'
-      platform:
-        type: 'string'
-        description: '平台（1：为web、2：dubbo）'
-      enableOuterAccessFlag:
-        type: 'string'
-        description: '集群外是否可访问（0：非、1：是）'
+  /chinaArea/deleteChinaArea:
+    post:
+      description: 删除地址库信息
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
 
-  serviceEditRequest:
-    type: 'object'
-    properties:
-      name:
-        type: 'string'
-        description: '名称'
-      version:
-        type: 'string'
-        description: '版本号'
-      uuid:
-        type: 'string'
-        description: '同一版本的标识，多个使用,分割'
-      num:
-        type: 'integer'
-        description: '节点数'
-      image:
-        type: 'string'
-        description: '镜像地址'
-      log:
-        type: 'string'
-        description: '日志目录'
-      requestsCPU:
-        type: 'string'
-        description: '运行必须CPU'
-      requestsMemory:
-        type: 'string'
-        description: '运行必须内存'
-      platform:
-        type: 'string'
-        description: '平台（1：为web、2：dubbo）'
-      enableOuterAccessFlag:
-        type: 'string'
-        description: '集群外是否可访问（0：非、1：是）'
-      operFlag:
-        type: 'string'
-        description: '操作标识（1：新增、2：修改）'
+  /chinaArea/getChinaArea:
+    post:
+      description: 获取地址库信息
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
 
-  serviceListResponse:
-    type: 'object'
-    properties:
-      rows:
-        type: 'array'
-        items:
-          $ref: '#/definitions/serviceBean'
+  /chinaArea/listChinaArea:
+    post:
+      tags:
+        - 地址库信息
+      description: 列表地址库信息
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
 
-  serviceBean:
-    type: 'object'
-    properties:
-      wid:
-        type: 'string'
-        description: 'pod唯一标识'
-      name:
-        type: 'string'
-        description: '名称'
-      version:
-        type: 'string'
-        description: '版本号'
-      node:
-        type: 'string'
-        description: '宿主机器'
-      labelName:
-        type: 'string'
-        description: '标签名称'
-      labelVersion:
-        type: 'string'
-        description: '标签版本'
-      labelUUID:
-        type: 'string'
-        description: '同一版本的标识，多个使用'
-      availableReplicas:
-        type: 'integer'
-        description: '可用节点数'
-      replicas:
-        type: 'integer'
-        description: '总节点数'
-      image:
-        type: 'string'
-        description: '镜像地址'
-      log:
-        type: 'string'
-        description: '日志目录'
-      requestsCPU:
-        type: 'string'
-        description: '运行必须CPU'
-      ip:
-        type: 'string'
-        description: 'pod的ip地址'
-      port:
-        type: 'integer'
-        description: 'pod的端口号'
-      requestsMemory:
-        type: 'string'
-        description: '运行必须内存'
-      createTime:
-        type: 'string'
-        description: '创建时间'
-      lastUpdateTime:
-        type: 'string'
-        description: '最后修改时间'
-      platform:
-        type: 'string'
-        description: '平台（1：为web、2：dubbo）'
-      enableOuterAccessFlag:
-        type: 'string'
-        description: '集群外是否可访问（0：非、1：是）'
-      status:
-        type: 'string'
-        description: '状态（1：成功、2：失败、3：等待）'
-      reason:
-        type: 'string'
-        description: '失败描述'
+  /chinaArea/listChinaAreaTree:
+    post:
+      description: 查询地址库树
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /chinaArea/queryChinaAreasPage:
+    post:
+      tags:
+        - 地址库信息
+      description: 查询地址库信息
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /chinaArea/updateChinaArea:
+    post:
+      tags:
+        - 地址库信息
+      description: 更新地址库信息
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /farmland/addFarmland:
+    post:
+      description: 添加我的农田
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /farmland/deleteFarmland:
+    post:
+      description: 删除我的农田
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /farmland/getCropList:
+    post:
+      description: 获取行政信息(经度+纬度)
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /farmland/getFarmland:
+    post:
+      description: 获取我的农田
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /farmland/getFertilizerData3:
+    post:
+      description: 获取行政信息(经度+纬度)
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /farmland/getManagementUnitData:
+    post:
+      description: 获取耕地资源管理单元图数据(系统代码+行政代码+OID)(耕地资源管理单元图+耕地资源管理单元属性数据表(主))
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /farmland/getRegionInfoByLocation:
+    post:
+      description: 获取行政信息(经度+纬度)
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /farmland/listFarmland:
+    post:
+      description: 列表我的农田
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /farmland/queryFarmlandsPage:
+    post:
+      description: 查询我的农田
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /farmland/updateFarmland:
+    post:
+      description: 更新我的农田
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /file/fileUpload:
+    post:
+      description: 证照上传
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /file/getFilePath:
+    post:
+      description: 获取文件绝对地址
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /file/removeFile:
+    post:
+      description: 读取图片流
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /receiver/addReceiver:
+    post:
+      description: 添加用户接收公告信息
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /receiver/deleteReceiver:
+    post:
+      description: 删除用户接收公告信息
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /receiver/getReceiver:
+    post:
+      description: 获取用户接收公告信息
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /receiver/listReceiver:
+    post:
+      description: 列表用户接收公告信息
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /receiver/queryReceiversPage:
+    post:
+      description: 查询用户接收公告信息
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /receiver/updateReceiver:
+    post:
+      description: 更新用户接收公告信息
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /uc/element/addElement:
+    post:
+      description: 添加页面元素
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /uc/element/deleteElement:
+    post:
+      description: 删除页面元素
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /uc/element/getElement:
+    post:
+      description: 获取页面元素
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /uc/element/listElement:
+    post:
+      description: 列表页面元素
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /uc/element/queryElementsPage:
+    post:
+      description: 查询页面元素
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /uc/element/updateElement:
+    post:
+      description: 更新页面元素
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /uc/invite/addInvite:
+    post:
+      description: 添加邀请记录表
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /uc/invite/deleteInvite:
+    post:
+      description: 删除邀请记录表
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /uc/invite/getInvite:
+    post:
+      description: 获取邀请记录表
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /uc/invite/listInvite:
+    post:
+      description: 列表邀请记录表
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /uc/invite/queryInvitesPage:
+    post:
+      description: 查询邀请记录表
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /uc/invite/updateInvite:
+    post:
+      description: 更新邀请记录表
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /uc/menu/addMenu:
+    post:
+      description: 添加菜单
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /uc/menu/deleteMenu:
+    post:
+      description: 删除菜单
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /uc/menu/getMenu:
+    post:
+      description: 获取菜单
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /uc/menu/listMenu:
+    post:
+      description: 列表菜单
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /uc/menu/listMenuTree:
+    post:
+      description: 查询菜单
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /uc/menu/queryMenusPage:
+    post:
+      description: 查询菜单
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /uc/menu/sortMenu:
+    post:
+      description: 排序菜单
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /uc/menu/updateMenu:
+    post:
+      description: 更新菜单
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /uc/permission/addPermission:
+    post:
+      description: 添加权限
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /uc/permission/deletePermission:
+    post:
+      description: 删除权限
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /uc/permission/getPermission:
+    post:
+      description: 获取权限
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /uc/permission/listPermission:
+    post:
+      description: 列表权限
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /uc/permission/queryPermissionsPage:
+    post:
+      description: 查询权限
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /uc/permission/updatePermission:
+    post:
+      description: 更新权限
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /uc/role/addRole:
+    post:
+      description: 添加角色信息
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /uc/role/deleteRole:
+    post:
+      description: 删除角色信息
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /uc/role/getRole:
+    post:
+      description: 获取角色信息
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /uc/role/listRole:
+    post:
+      description: 列表角色信息
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /uc/role/queryRolesPage:
+    post:
+      description: 查询角色信息
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /uc/role/saveRoleMenu:
+    post:
+      description: 修改角色菜单
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /uc/role/updateRole:
+    post:
+      description: 更新角色信息
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /uc/user/addUser:
+    post:
+      description: 添加用户信息
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /uc/user/deleteUser:
+    post:
+      description: 删除用户信息
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /uc/user/getUser:
+    post:
+      description: 获取用户信息
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /uc/user/getUserBasicInfo:
+    post:
+      description: 获取用户信息
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /uc/user/getUserTree:
+    post:
+      description: 查询用户
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /uc/user/listUser:
+    post:
+      description: 列表用户信息
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /uc/user/queryInviteUsersPage:
+    post:
+      description: 查询邀请用户信息
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /uc/user/queryUserType:
+    post:
+      description: 获取用户信息
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /uc/user/queryUsersPage:
+    post:
+      description: 查询用户信息
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /uc/user/register:
+    post:
+      description: 添加用户信息
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /uc/user/resetUsertPassword:
+    post:
+      description: 重置用户
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /uc/user/saveUserRole:
+    post:
+      description: 修改用户角色
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+
+  /uc/user/updateUser:
+    post:
+      description: 更新用户信息
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
