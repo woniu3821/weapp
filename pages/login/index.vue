@@ -7,8 +7,8 @@
 				<u-form-item prop="password" label-width="0rpx"><u-input :password-icon="true" type="password" placeholder="请输入密码" v-model="form.password" /></u-form-item>
 				<u-form-item prop="imageCode" label-width="0rpx">
 					<view class="u-flex u-row-between">
-						<view class="col"><u-input placeholder="请输入验证码" v-model="form.imageCode" /></view>
-						<view class=""><image :src="url" mode="aspectFit"></image></view>
+						<u-input placeholder="请输入验证码" v-model="form.imageCode" />
+						<image @click="getImage" class="imageCode" :src="imageData" mode="aspectFit"></image>
 					</view>
 				</u-form-item>
 			</u-form>
@@ -47,11 +47,6 @@ export default {
 			imageData: ''
 		};
 	},
-	computed: {
-		url() {
-			return 'data:image/gif;base64' + this.imageData;
-		}
-	},
 	onShow() {
 		this.getImage();
 	},
@@ -65,36 +60,53 @@ export default {
 				}
 			});
 		},
+		request(url,obj={},deviceId) {
+			console.log(deviceId)
+			const defaltPath = 'http://172.31.16.244:8080/heter-web-api'
+			obj.url = defaltPath + url
+			let params = Object.assign({}, {
+				method: 'POST',
+				header: {
+					'Content-Type': 'application/x-www-form-urlencoded',
+					deviceId,
+				}
+			}, obj)
+			return uni.request(params)
+		},
 		async login(data) {
 			this.load('登录中...');
-			const [err, res] = await this.request('/auth/form', {
-				data: data
-			});
-			this.hide();
+			const [err, res] = await awaitWrap(this.request('/auth/form', {
+				data: data,
+				header:{
+					Authorization: 'Basic bXV3dS1jbGllbnQtYXV0aDptdXd1Q2xpZW50U2VjcmV0',
+					'Content-Type': 'application/x-www-form-urlencoded',
+					deviceId:this.vuex_deviceId
+				}
+			}));
+			this.hide()
 			if (err) {
-				console.log(err);
-				this.toast('登录失败');
+				this.getImage();
+				this.fail(err);
 				return;
 			}
-			uni.redirectTo({
+			
+			
+			this.$u.vuex('vuex_token',res.access_token);	
+			
+			uni.switchTab({
 				url: '/pages/home/main'
 			});
 		},
 		async getImage() {
-			const [err, res] = await awaitWrap(
-				this.post(
-					'/auth/code/image',
-					{},
-					{
-						deviceId: this.$u.guid(20)
-					}
-				)
-			);
-			if(err){
-				this.toast(err)
+			const deviceId=this.$u.guid(20)
+			this.$u.vuex('vuex_deviceId',deviceId);
+			
+			const [err, res] = await awaitWrap(this.request('/auth/code/image',{},deviceId));
+			if (err) {
+				this.fail(err);
 				return;
 			}
-			this.imageData=res;
+			this.imageData = 'data:image/gif;base64,' + res;
 		}
 	},
 	onReady() {
@@ -116,6 +128,10 @@ export default {
 	.content {
 		width: 686rpx;
 		margin: 0 auto;
+	}
+	.imageCode {
+		width: 238rpx;
+		height: 70rpx;
 	}
 }
 </style>

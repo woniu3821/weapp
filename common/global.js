@@ -14,9 +14,15 @@ contexts.keys().forEach(component => {
 
 Vue.mixin({
 	methods: {
-		toast(title, config = {}) {
+		success(title, config = {}) {
 			uni.showToast(Object.assign({}, {
 				title
+			}, config))
+		},
+		fail(title,config={}){
+			uni.showToast(Object.assign({}, {
+				title,
+				icon:'none'
 			}, config))
 		},
 		load(title) {
@@ -27,26 +33,10 @@ Vue.mixin({
 		hide() {
 			uni.hideLoading()
 		},
-		async request(url,obj) {
-			
-			const defaltPath = 'http://172.31.16.244:8080/heter-web-api'
-			
-			obj.url = defaltPath + url
-
-			let params = Object.assign({}, {
-				method: 'POST',
-				header: {
-					'Content-Type': 'application/x-www-form-urlencoded',
-					deviceId: this.$u.guid(20)
-				}
-			}, obj)
-
-			return uni.request(params)
-		},
-		async post(url,params={},header){
+		post(url,params={},header){
 			return this.$u.post(url,params,header)
 		},
-		async get(){
+		get(){
 			return this.$u.get(url,params={},header)
 		}
 	}

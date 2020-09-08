@@ -38,6 +38,7 @@ const store = new Vuex.Store({
 		// 如果vuex_version无需保存到本地永久存储，无需lifeData.vuex_version方式
 		vuex_version: '1.0.1',
 		vuex_demo: '绛紫',
+		vuex_deviceId:'',
 		vuex_permission: lifeData.vuex_permission ? lifeData.vuex_permission : false,
 		// 自定义tabbar数据
 		vuex_tabbar: [{
