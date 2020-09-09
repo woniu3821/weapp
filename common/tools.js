@@ -4,8 +4,7 @@ var coordtransform = require('coordtransform');
 
 export const awaitWrap = (promise) =>
 	promise
-	.then((response) => {
-		const [error, res]=response;
+	.then((res) => {
 		if (res.statusCode === 200 && res.data.code === 200) {
 			return [null, res.data.result];
 		}

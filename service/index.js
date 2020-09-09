@@ -20,9 +20,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postAnnouncementAddannouncement = async (params={},id='') => {
+	const  postAnnouncementAddannouncement = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.announcement_addannouncement${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.announcement_addannouncement+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postAnnouncementAddannouncement=postAnnouncementAddannouncement
@@ -31,9 +31,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postAnnouncementDeleteannouncement = async (params={},id='') => {
+	const  postAnnouncementDeleteannouncement = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.announcement_deleteannouncement${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.announcement_deleteannouncement+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postAnnouncementDeleteannouncement=postAnnouncementDeleteannouncement
@@ -42,9 +42,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postAnnouncementGetannouncement = async (params={},id='') => {
+	const  postAnnouncementGetannouncement = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.announcement_getannouncement${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.announcement_getannouncement+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postAnnouncementGetannouncement=postAnnouncementGetannouncement
@@ -53,9 +53,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postAnnouncementListannouncement = async (params={},id='') => {
+	const  postAnnouncementListannouncement = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.announcement_listannouncement${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.announcement_listannouncement+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postAnnouncementListannouncement=postAnnouncementListannouncement
@@ -64,9 +64,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postAnnouncementListreadannouncement = async (params={},id='') => {
+	const  postAnnouncementListreadannouncement = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.announcement_listreadannouncement${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.announcement_listreadannouncement+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postAnnouncementListreadannouncement=postAnnouncementListreadannouncement
@@ -75,9 +75,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postAnnouncementQueryannouncementspage = async (params={},id='') => {
+	const  postAnnouncementQueryannouncementspage = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.announcement_queryannouncementspage${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.announcement_queryannouncementspage+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postAnnouncementQueryannouncementspage=postAnnouncementQueryannouncementspage
@@ -86,9 +86,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postAnnouncementReadannouncements = async (params={},id='') => {
+	const  postAnnouncementReadannouncements = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.announcement_readannouncements${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.announcement_readannouncements+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postAnnouncementReadannouncements=postAnnouncementReadannouncements
@@ -97,9 +97,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postAnnouncementUpdateannouncement = async (params={},id='') => {
+	const  postAnnouncementUpdateannouncement = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.announcement_updateannouncement${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.announcement_updateannouncement+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postAnnouncementUpdateannouncement=postAnnouncementUpdateannouncement
@@ -108,9 +108,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  getAuthCode = async (params={},id='') => {
+	const  getAuthCode = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.get(`api.auth_code${id}`, params))
+	    return awaitWrap(vm.$u.get(`${api.auth_code+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.getAuthCode=getAuthCode
@@ -119,9 +119,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postChinaareaAddchinaarea = async (params={},id='') => {
+	const  postChinaareaAddchinaarea = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.chinaarea_addchinaarea${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.chinaarea_addchinaarea+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postChinaareaAddchinaarea=postChinaareaAddchinaarea
@@ -130,9 +130,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postChinaareaDeletechinaarea = async (params={},id='') => {
+	const  postChinaareaDeletechinaarea = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.chinaarea_deletechinaarea${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.chinaarea_deletechinaarea+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postChinaareaDeletechinaarea=postChinaareaDeletechinaarea
@@ -141,9 +141,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postChinaareaGetchinaarea = async (params={},id='') => {
+	const  postChinaareaGetchinaarea = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.chinaarea_getchinaarea${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.chinaarea_getchinaarea+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postChinaareaGetchinaarea=postChinaareaGetchinaarea
@@ -152,9 +152,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postChinaareaListchinaarea = async (params={},id='') => {
+	const  postChinaareaListchinaarea = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.chinaarea_listchinaarea${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.chinaarea_listchinaarea+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postChinaareaListchinaarea=postChinaareaListchinaarea
@@ -163,9 +163,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postChinaareaListchinaareatree = async (params={},id='') => {
+	const  postChinaareaListchinaareatree = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.chinaarea_listchinaareatree${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.chinaarea_listchinaareatree+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postChinaareaListchinaareatree=postChinaareaListchinaareatree
@@ -174,9 +174,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postChinaareaQuerychinaareaspage = async (params={},id='') => {
+	const  postChinaareaQuerychinaareaspage = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.chinaarea_querychinaareaspage${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.chinaarea_querychinaareaspage+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postChinaareaQuerychinaareaspage=postChinaareaQuerychinaareaspage
@@ -185,9 +185,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postChinaareaUpdatechinaarea = async (params={},id='') => {
+	const  postChinaareaUpdatechinaarea = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.chinaarea_updatechinaarea${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.chinaarea_updatechinaarea+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postChinaareaUpdatechinaarea=postChinaareaUpdatechinaarea
@@ -196,9 +196,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postFarmlandAddfarmland = async (params={},id='') => {
+	const  postFarmlandAddfarmland = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.farmland_addfarmland${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.farmland_addfarmland+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postFarmlandAddfarmland=postFarmlandAddfarmland
@@ -207,9 +207,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postFarmlandDeletefarmland = async (params={},id='') => {
+	const  postFarmlandDeletefarmland = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.farmland_deletefarmland${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.farmland_deletefarmland+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postFarmlandDeletefarmland=postFarmlandDeletefarmland
@@ -218,9 +218,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postFarmlandGetcroplist = async (params={},id='') => {
+	const  postFarmlandGetcroplist = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.farmland_getcroplist${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.farmland_getcroplist+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postFarmlandGetcroplist=postFarmlandGetcroplist
@@ -229,9 +229,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postFarmlandGetfarmland = async (params={},id='') => {
+	const  postFarmlandGetfarmland = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.farmland_getfarmland${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.farmland_getfarmland+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postFarmlandGetfarmland=postFarmlandGetfarmland
@@ -240,9 +240,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postFarmlandGetfertilizerdata3 = async (params={},id='') => {
+	const  postFarmlandGetfertilizerdata3 = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.farmland_getfertilizerdata3${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.farmland_getfertilizerdata3+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postFarmlandGetfertilizerdata3=postFarmlandGetfertilizerdata3
@@ -251,9 +251,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postFarmlandGetmanagementunitdata = async (params={},id='') => {
+	const  postFarmlandGetmanagementunitdata = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.farmland_getmanagementunitdata${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.farmland_getmanagementunitdata+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postFarmlandGetmanagementunitdata=postFarmlandGetmanagementunitdata
@@ -262,9 +262,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postFarmlandGetregioninfobylocation = async (params={},id='') => {
+	const  postFarmlandGetregioninfobylocation = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.farmland_getregioninfobylocation${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.farmland_getregioninfobylocation+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postFarmlandGetregioninfobylocation=postFarmlandGetregioninfobylocation
@@ -273,9 +273,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postFarmlandListfarmland = async (params={},id='') => {
+	const  postFarmlandListfarmland = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.farmland_listfarmland${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.farmland_listfarmland+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postFarmlandListfarmland=postFarmlandListfarmland
@@ -284,9 +284,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postFarmlandQueryfarmlandspage = async (params={},id='') => {
+	const  postFarmlandQueryfarmlandspage = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.farmland_queryfarmlandspage${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.farmland_queryfarmlandspage+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postFarmlandQueryfarmlandspage=postFarmlandQueryfarmlandspage
@@ -295,9 +295,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postFarmlandUpdatefarmland = async (params={},id='') => {
+	const  postFarmlandUpdatefarmland = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.farmland_updatefarmland${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.farmland_updatefarmland+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postFarmlandUpdatefarmland=postFarmlandUpdatefarmland
@@ -306,9 +306,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postFileFileupload = async (params={},id='') => {
+	const  postFileFileupload = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.file_fileupload${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.file_fileupload+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postFileFileupload=postFileFileupload
@@ -317,9 +317,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postFileGetfilepath = async (params={},id='') => {
+	const  postFileGetfilepath = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.file_getfilepath${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.file_getfilepath+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postFileGetfilepath=postFileGetfilepath
@@ -328,9 +328,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postFileRemovefile = async (params={},id='') => {
+	const  postFileRemovefile = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.file_removefile${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.file_removefile+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postFileRemovefile=postFileRemovefile
@@ -339,9 +339,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postReceiverAddreceiver = async (params={},id='') => {
+	const  postReceiverAddreceiver = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.receiver_addreceiver${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.receiver_addreceiver+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postReceiverAddreceiver=postReceiverAddreceiver
@@ -350,9 +350,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postReceiverDeletereceiver = async (params={},id='') => {
+	const  postReceiverDeletereceiver = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.receiver_deletereceiver${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.receiver_deletereceiver+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postReceiverDeletereceiver=postReceiverDeletereceiver
@@ -361,9 +361,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postReceiverGetreceiver = async (params={},id='') => {
+	const  postReceiverGetreceiver = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.receiver_getreceiver${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.receiver_getreceiver+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postReceiverGetreceiver=postReceiverGetreceiver
@@ -372,9 +372,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postReceiverListreceiver = async (params={},id='') => {
+	const  postReceiverListreceiver = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.receiver_listreceiver${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.receiver_listreceiver+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postReceiverListreceiver=postReceiverListreceiver
@@ -383,9 +383,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postReceiverQueryreceiverspage = async (params={},id='') => {
+	const  postReceiverQueryreceiverspage = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.receiver_queryreceiverspage${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.receiver_queryreceiverspage+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postReceiverQueryreceiverspage=postReceiverQueryreceiverspage
@@ -394,9 +394,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postReceiverUpdatereceiver = async (params={},id='') => {
+	const  postReceiverUpdatereceiver = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.receiver_updatereceiver${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.receiver_updatereceiver+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postReceiverUpdatereceiver=postReceiverUpdatereceiver
@@ -405,9 +405,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postUcElementAddelement = async (params={},id='') => {
+	const  postUcElementAddelement = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.uc_element_addelement${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.uc_element_addelement+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postUcElementAddelement=postUcElementAddelement
@@ -416,9 +416,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postUcElementDeleteelement = async (params={},id='') => {
+	const  postUcElementDeleteelement = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.uc_element_deleteelement${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.uc_element_deleteelement+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postUcElementDeleteelement=postUcElementDeleteelement
@@ -427,9 +427,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postUcElementGetelement = async (params={},id='') => {
+	const  postUcElementGetelement = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.uc_element_getelement${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.uc_element_getelement+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postUcElementGetelement=postUcElementGetelement
@@ -438,9 +438,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postUcElementListelement = async (params={},id='') => {
+	const  postUcElementListelement = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.uc_element_listelement${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.uc_element_listelement+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postUcElementListelement=postUcElementListelement
@@ -449,9 +449,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postUcElementQueryelementspage = async (params={},id='') => {
+	const  postUcElementQueryelementspage = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.uc_element_queryelementspage${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.uc_element_queryelementspage+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postUcElementQueryelementspage=postUcElementQueryelementspage
@@ -460,9 +460,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postUcElementUpdateelement = async (params={},id='') => {
+	const  postUcElementUpdateelement = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.uc_element_updateelement${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.uc_element_updateelement+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postUcElementUpdateelement=postUcElementUpdateelement
@@ -471,9 +471,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postUcInviteAddinvite = async (params={},id='') => {
+	const  postUcInviteAddinvite = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.uc_invite_addinvite${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.uc_invite_addinvite+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postUcInviteAddinvite=postUcInviteAddinvite
@@ -482,9 +482,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postUcInviteDeleteinvite = async (params={},id='') => {
+	const  postUcInviteDeleteinvite = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.uc_invite_deleteinvite${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.uc_invite_deleteinvite+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postUcInviteDeleteinvite=postUcInviteDeleteinvite
@@ -493,9 +493,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postUcInviteGetinvite = async (params={},id='') => {
+	const  postUcInviteGetinvite = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.uc_invite_getinvite${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.uc_invite_getinvite+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postUcInviteGetinvite=postUcInviteGetinvite
@@ -504,9 +504,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postUcInviteListinvite = async (params={},id='') => {
+	const  postUcInviteListinvite = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.uc_invite_listinvite${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.uc_invite_listinvite+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postUcInviteListinvite=postUcInviteListinvite
@@ -515,9 +515,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postUcInviteQueryinvitespage = async (params={},id='') => {
+	const  postUcInviteQueryinvitespage = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.uc_invite_queryinvitespage${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.uc_invite_queryinvitespage+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postUcInviteQueryinvitespage=postUcInviteQueryinvitespage
@@ -526,9 +526,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postUcInviteUpdateinvite = async (params={},id='') => {
+	const  postUcInviteUpdateinvite = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.uc_invite_updateinvite${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.uc_invite_updateinvite+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postUcInviteUpdateinvite=postUcInviteUpdateinvite
@@ -537,9 +537,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postUcMenuAddmenu = async (params={},id='') => {
+	const  postUcMenuAddmenu = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.uc_menu_addmenu${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.uc_menu_addmenu+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postUcMenuAddmenu=postUcMenuAddmenu
@@ -548,9 +548,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postUcMenuDeletemenu = async (params={},id='') => {
+	const  postUcMenuDeletemenu = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.uc_menu_deletemenu${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.uc_menu_deletemenu+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postUcMenuDeletemenu=postUcMenuDeletemenu
@@ -559,9 +559,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postUcMenuGetmenu = async (params={},id='') => {
+	const  postUcMenuGetmenu = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.uc_menu_getmenu${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.uc_menu_getmenu+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postUcMenuGetmenu=postUcMenuGetmenu
@@ -570,9 +570,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postUcMenuListmenu = async (params={},id='') => {
+	const  postUcMenuListmenu = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.uc_menu_listmenu${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.uc_menu_listmenu+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postUcMenuListmenu=postUcMenuListmenu
@@ -581,9 +581,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postUcMenuListmenutree = async (params={},id='') => {
+	const  postUcMenuListmenutree = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.uc_menu_listmenutree${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.uc_menu_listmenutree+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postUcMenuListmenutree=postUcMenuListmenutree
@@ -592,9 +592,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postUcMenuQuerymenuspage = async (params={},id='') => {
+	const  postUcMenuQuerymenuspage = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.uc_menu_querymenuspage${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.uc_menu_querymenuspage+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postUcMenuQuerymenuspage=postUcMenuQuerymenuspage
@@ -603,9 +603,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postUcMenuSortmenu = async (params={},id='') => {
+	const  postUcMenuSortmenu = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.uc_menu_sortmenu${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.uc_menu_sortmenu+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postUcMenuSortmenu=postUcMenuSortmenu
@@ -614,9 +614,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postUcMenuUpdatemenu = async (params={},id='') => {
+	const  postUcMenuUpdatemenu = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.uc_menu_updatemenu${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.uc_menu_updatemenu+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postUcMenuUpdatemenu=postUcMenuUpdatemenu
@@ -625,9 +625,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postUcPermissionAddpermission = async (params={},id='') => {
+	const  postUcPermissionAddpermission = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.uc_permission_addpermission${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.uc_permission_addpermission+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postUcPermissionAddpermission=postUcPermissionAddpermission
@@ -636,9 +636,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postUcPermissionDeletepermission = async (params={},id='') => {
+	const  postUcPermissionDeletepermission = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.uc_permission_deletepermission${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.uc_permission_deletepermission+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postUcPermissionDeletepermission=postUcPermissionDeletepermission
@@ -647,9 +647,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postUcPermissionGetpermission = async (params={},id='') => {
+	const  postUcPermissionGetpermission = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.uc_permission_getpermission${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.uc_permission_getpermission+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postUcPermissionGetpermission=postUcPermissionGetpermission
@@ -658,9 +658,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postUcPermissionListpermission = async (params={},id='') => {
+	const  postUcPermissionListpermission = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.uc_permission_listpermission${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.uc_permission_listpermission+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postUcPermissionListpermission=postUcPermissionListpermission
@@ -669,9 +669,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postUcPermissionQuerypermissionspage = async (params={},id='') => {
+	const  postUcPermissionQuerypermissionspage = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.uc_permission_querypermissionspage${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.uc_permission_querypermissionspage+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postUcPermissionQuerypermissionspage=postUcPermissionQuerypermissionspage
@@ -680,9 +680,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postUcPermissionUpdatepermission = async (params={},id='') => {
+	const  postUcPermissionUpdatepermission = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.uc_permission_updatepermission${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.uc_permission_updatepermission+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postUcPermissionUpdatepermission=postUcPermissionUpdatepermission
@@ -691,9 +691,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postUcRoleAddrole = async (params={},id='') => {
+	const  postUcRoleAddrole = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.uc_role_addrole${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.uc_role_addrole+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postUcRoleAddrole=postUcRoleAddrole
@@ -702,9 +702,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postUcRoleDeleterole = async (params={},id='') => {
+	const  postUcRoleDeleterole = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.uc_role_deleterole${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.uc_role_deleterole+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postUcRoleDeleterole=postUcRoleDeleterole
@@ -713,9 +713,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postUcRoleGetrole = async (params={},id='') => {
+	const  postUcRoleGetrole = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.uc_role_getrole${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.uc_role_getrole+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postUcRoleGetrole=postUcRoleGetrole
@@ -724,9 +724,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postUcRoleListrole = async (params={},id='') => {
+	const  postUcRoleListrole = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.uc_role_listrole${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.uc_role_listrole+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postUcRoleListrole=postUcRoleListrole
@@ -735,9 +735,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postUcRoleQueryrolespage = async (params={},id='') => {
+	const  postUcRoleQueryrolespage = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.uc_role_queryrolespage${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.uc_role_queryrolespage+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postUcRoleQueryrolespage=postUcRoleQueryrolespage
@@ -746,9 +746,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postUcRoleSaverolemenu = async (params={},id='') => {
+	const  postUcRoleSaverolemenu = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.uc_role_saverolemenu${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.uc_role_saverolemenu+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postUcRoleSaverolemenu=postUcRoleSaverolemenu
@@ -757,9 +757,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postUcRoleUpdaterole = async (params={},id='') => {
+	const  postUcRoleUpdaterole = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.uc_role_updaterole${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.uc_role_updaterole+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postUcRoleUpdaterole=postUcRoleUpdaterole
@@ -768,9 +768,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postUcUserAdduser = async (params={},id='') => {
+	const  postUcUserAdduser = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.uc_user_adduser${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.uc_user_adduser+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postUcUserAdduser=postUcUserAdduser
@@ -779,9 +779,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postUcUserDeleteuser = async (params={},id='') => {
+	const  postUcUserDeleteuser = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.uc_user_deleteuser${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.uc_user_deleteuser+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postUcUserDeleteuser=postUcUserDeleteuser
@@ -790,9 +790,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postUcUserGetuser = async (params={},id='') => {
+	const  postUcUserGetuser = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.uc_user_getuser${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.uc_user_getuser+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postUcUserGetuser=postUcUserGetuser
@@ -801,9 +801,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postUcUserGetuserbasicinfo = async (params={},id='') => {
+	const  postUcUserGetuserbasicinfo = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.uc_user_getuserbasicinfo${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.uc_user_getuserbasicinfo+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postUcUserGetuserbasicinfo=postUcUserGetuserbasicinfo
@@ -812,9 +812,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postUcUserGetusertree = async (params={},id='') => {
+	const  postUcUserGetusertree = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.uc_user_getusertree${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.uc_user_getusertree+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postUcUserGetusertree=postUcUserGetusertree
@@ -823,9 +823,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postUcUserListuser = async (params={},id='') => {
+	const  postUcUserListuser = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.uc_user_listuser${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.uc_user_listuser+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postUcUserListuser=postUcUserListuser
@@ -834,9 +834,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postUcUserQueryinviteuserspage = async (params={},id='') => {
+	const  postUcUserQueryinviteuserspage = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.uc_user_queryinviteuserspage${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.uc_user_queryinviteuserspage+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postUcUserQueryinviteuserspage=postUcUserQueryinviteuserspage
@@ -845,9 +845,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postUcUserQueryusertype = async (params={},id='') => {
+	const  postUcUserQueryusertype = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.uc_user_queryusertype${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.uc_user_queryusertype+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postUcUserQueryusertype=postUcUserQueryusertype
@@ -856,9 +856,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postUcUserQueryuserspage = async (params={},id='') => {
+	const  postUcUserQueryuserspage = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.uc_user_queryuserspage${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.uc_user_queryuserspage+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postUcUserQueryuserspage=postUcUserQueryuserspage
@@ -867,9 +867,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postUcUserRegister = async (params={},id='') => {
+	const  postUcUserRegister = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.uc_user_register${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.uc_user_register+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postUcUserRegister=postUcUserRegister
@@ -878,9 +878,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postUcUserResetusertpassword = async (params={},id='') => {
+	const  postUcUserResetusertpassword = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.uc_user_resetusertpassword${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.uc_user_resetusertpassword+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postUcUserResetusertpassword=postUcUserResetusertpassword
@@ -889,9 +889,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postUcUserSaveuserrole = async (params={},id='') => {
+	const  postUcUserSaveuserrole = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.uc_user_saveuserrole${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.uc_user_saveuserrole+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postUcUserSaveuserrole=postUcUserSaveuserrole
@@ -900,9 +900,9 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postUcUserUpdateuser = async (params={},id='') => {
+	const  postUcUserUpdateuser = async (params={},id='',header) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`api.uc_user_updateuser${id}`, params))
+	    return awaitWrap(vm.$u.post(`${api.uc_user_updateuser+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postUcUserUpdateuser=postUcUserUpdateuser

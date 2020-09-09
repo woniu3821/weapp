@@ -1,6 +1,6 @@
 <template>
 	<view class="wrap">
-		<view class="bg"><image src="../../static/img/bg.png" mode="aspectFit"></image></view>
+		<view class="bg"><image src="../../static/img/bg.png" mode="widthFix"></image></view>
 		<view class="content">
 			<u-form :model="form" ref="uForm">
 				<u-form-item prop="username" label-width="0rpx"><u-input placeholder="请输入用户名" v-model="form.username" /></u-form-item>
@@ -12,8 +12,11 @@
 					</view>
 				</u-form-item>
 			</u-form>
-
-			<u-button type="success" @click="submit">提交</u-button>
+			<view class="open-to u-flex u-row-between">
+				<view class=""></view>
+				<navigator url="/pages/login/register" open-type="navigate"><text class="register">注册</text></navigator>
+			</view>
+			<u-button type="success" @click="submit">登录</u-button>
 		</view>
 	</view>
 </template>
@@ -60,48 +63,56 @@ export default {
 				}
 			});
 		},
-		request(url,obj={},deviceId) {
-			console.log(deviceId)
-			const defaltPath = 'http://172.31.16.244:8080/heter-web-api'
-			obj.url = defaltPath + url
-			let params = Object.assign({}, {
-				method: 'POST',
-				header: {
-					'Content-Type': 'application/x-www-form-urlencoded',
-					deviceId,
-				}
-			}, obj)
-			return uni.request(params)
-		},
+		// request(url,obj={},deviceId) {
+		// 	console.log(deviceId)
+		// 	const defaltPath = 'http://172.31.16.244:8080/heter-web-api'
+		// 	obj.url = defaltPath + url
+		// 	let params = Object.assign({}, {
+		// 		method: 'POST',
+		// 		header: {
+		// 			'Content-Type': 'application/x-www-form-urlencoded',
+		// 			deviceId,
+		// 		}
+		// 	}, obj)
+		// 	return uni.request(params)
+		// },
 		async login(data) {
 			this.load('登录中...');
-			const [err, res] = await awaitWrap(this.request('/auth/form', {
-				data: data,
-				header:{
+			const [err, res] = await awaitWrap(
+				this.$u.post('/heter-web-api/auth/form', data, {
 					Authorization: 'Basic bXV3dS1jbGllbnQtYXV0aDptdXd1Q2xpZW50U2VjcmV0',
 					'Content-Type': 'application/x-www-form-urlencoded',
-					deviceId:this.vuex_deviceId
-				}
-			}));
-			this.hide()
+					deviceId: this.vuex_deviceId
+				})
+			);
+			this.hide();
 			if (err) {
 				this.getImage();
 				this.fail(err);
 				return;
 			}
-			
-			
-			this.$u.vuex('vuex_token',res.access_token);	
-			
+
+			this.$u.vuex('vuex_token', res.access_token);
+
 			uni.switchTab({
 				url: '/pages/home/main'
 			});
+			
 		},
 		async getImage() {
-			const deviceId=this.$u.guid(20)
-			this.$u.vuex('vuex_deviceId',deviceId);
-			
-			const [err, res] = await awaitWrap(this.request('/auth/code/image',{},deviceId));
+			const deviceId = this.$u.guid(20);
+			this.$u.vuex('vuex_deviceId', deviceId);
+
+			const [err, res] = await awaitWrap(
+				this.$u.post(
+					'/heter-web-api/auth/code/image',
+					{},
+					{
+						'Content-Type': 'application/x-www-form-urlencoded',
+						deviceId
+					}
+				)
+			);
 			if (err) {
 				this.fail(err);
 				return;
@@ -116,22 +127,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.wrap {
-	position: relative;
-	.bg {
-		width: 100%;
-		image {
-			height: 432rpx;
-		}
-	}
-
-	.content {
-		width: 686rpx;
-		margin: 0 auto;
-	}
-	.imageCode {
-		width: 238rpx;
-		height: 70rpx;
-	}
-}
+@import './login.scss';
 </style>

@@ -31,7 +31,7 @@ const install = (Vue, vm) => {
 	{{/each}}
 	{{/if}}
 	 */
-	const  {{apiName}} = async (params={},id='') => {
+	const  {{apiName}} = async (params={},id='',header) => {
 	    // send request
 	    {{#if defaultParams}}
 	    params = Object.assign({
@@ -40,7 +40,7 @@ const install = (Vue, vm) => {
 	        {{/each}}
 	    }, params)
 	    {{/if}}
-	    return awaitWrap(vm.$u.{{method}}(`api.{{name}}${id}`, params))
+	    return awaitWrap(vm.$u.{{method}}(`${api.{{name}}+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.{{apiName}}={{apiName}}

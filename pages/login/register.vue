@@ -1,92 +1,43 @@
 <template>
 	<view class="wrap">
-		<view class="title">注册</view>
+		<view class="bg"><image src="../../static/img/bg.png" mode="widthFix"></image></view>
 		<view class="content">
-			<u-form :model="form" ref="uForm">
-				<u-form-item label="邀请码" prop="inviteCode"><u-input v-model="form.inviteCode" /></u-form-item>
+			<u-form :model="form" ref="uForm" label-width="150">
+				<u-form-item label="邀请码" prop="inviteInfo"><u-input v-model="form.inviteInfo" /></u-form-item>
 				<u-form-item label="昵称" prop="nickname"><u-input v-model="form.nickname" /></u-form-item>
-				<u-form-item label="手机号" prop="mobile" label-width="150"><u-input placeholder="请输入手机号" v-model="form.mobile" type="number"></u-input></u-form-item>
+				<u-form-item label="手机号" prop="mobile"><u-input placeholder="请输入手机号" v-model="form.mobile" type="number"></u-input></u-form-item>
 				<u-form-item label="密码" prop="password"><u-input :password-icon="true" type="password" v-model="form.password" placeholder="请输入密码"></u-input></u-form-item>
 				<u-form-item label="确认密码" prop="checkPassword"><u-input type="password" v-model="form.checkPassword" placeholder="请确认密码"></u-input></u-form-item>
-				<u-form-item label="所在地区" prop="region" label-width="150">
-					<u-input type="select" :select-open="pickerShow" v-model="form.region" placeholder="请选择地区" @click="pickerShow = true"></u-input>
+				<u-form-item label="所在地区" prop="countyCode">
+					<u-input type="select" :select-open="pickerShow" :value="area" placeholder="请选择地区" @click="pickerShow = true"></u-input>
 				</u-form-item>
-				<u-form-item label="地址" prop="address"><u-input type="textarea" placeholder="请输入地址" v-model="form.address" /></u-form-item>
+				<u-form-item label-position="top" label="详细地址" prop="address"><u-input type="textarea" placeholder="请输入详细地址" v-model="form.address" /></u-form-item>
 			</u-form>
-			<u-button @click="submit">提交</u-button>
+			<view class="open-to"><u-button type="success" @click="submit">注册</u-button></view>
 			<u-select v-model="pickerShow" mode="mutil-column-auto" :list="list" @confirm="regionConfirm"></u-select>
 		</view>
 	</view>
 </template>
 
 <script>
+	import { awaitWrap } from '@/common/tools';
 export default {
 	data() {
 		return {
 			form: {
-				inviteCode:'',
+				inviteInfo: '',
 				nickname: '',
-				password:'',
-				checkPassword:'',
-				provinceCode:'',
-				cityCode:'',
-				countyCode:'',
-				address:'',
-				password:'',
+				password: '',
+				mobile: '',
+				checkPassword: '',
+				provinceCode: '',
+				cityCode: '',
+				countyCode: '',
+				address: ''
 			},
+			selectList: [],
 			pickerShow: false,
-			list: [
-				{
-					value: 1,
-					label: '中国',
-					children: [
-						{
-							value: 2,
-							label: '广东',
-							children: [
-								{
-									value: 3,
-									label: '深圳'
-								},
-								{
-									value: 4,
-									label: '广州'
-								}
-							]
-						},
-						{
-							value: 5,
-							label: '广西',
-							children: [
-								{
-									value: 6,
-									label: '南宁'
-								},
-								{
-									value: 7,
-									label: '桂林'
-								}
-							]
-						}
-					]
-				},
-				{
-					value: 8,
-					label: '美国',
-					children: [
-						{
-							value: 9,
-							label: '纽约',
-							children: [
-								{
-									value: 10,
-									label: '皇后街区'
-								}
-							]
-						}
-					]
-				}
-			],
+			list: [],
 			rules: {
 				name: [
 					{
@@ -103,7 +54,7 @@ export default {
 						trigger: 'change'
 					}
 				],
-				phone: [
+				mobile: [
 					{
 						required: true,
 						message: '请输入手机号',
@@ -132,7 +83,7 @@ export default {
 						trigger: ['change', 'blur']
 					}
 				],
-				rePassword: [
+				checkPassword: [
 					{
 						required: true,
 						message: '请重新输入密码',
@@ -146,57 +97,102 @@ export default {
 						trigger: ['change', 'blur']
 					}
 				],
-				region: [
+				countyCode: [
 					{
 						required: true,
 						message: '请选择地区',
-						trigger: 'change'
+						type: 'number',
+						trigger: ['change', 'blur']
 					}
 				],
-				intro: [
+				address: [
 					{
 						required: true,
-						message: '请填写简介'
-					},
-					{
-						min: 5,
-						message: '简介不能少于5个字',
-						trigger: 'change'
-					},
-					// 正则校验示例，此处用正则校验是否中文，此处仅为示例，因为uView有this.$u.test.chinese可以判断是否中文
-					{
-						pattern: /^[\u4e00-\u9fa5]+$/gi,
-						message: '简介只能为中文',
-						trigger: 'change'
+						message: '请填写详细地址'
 					}
 				]
 			}
 		};
 	},
+	computed: {
+		area() {
+			return this.selectList.map(it => it.label).join('-');
+		}
+	},
 	methods: {
 		submit() {
-			// uni.showLoading({
-			// 	title: '登录',
-			// 	mask: true
-			// })
-			// uni.hideLoading();
 			this.$refs.uForm.validate(valid => {
 				if (valid) {
-					this.$u.toast('验证通过');
-				} else {
-					console.log('验证失败');
+					this.postUcRoleAddrole()
 				}
 			});
 		},
 		// 选择地区回调
-		regionConfirm(e) {
-			this.form.region = e.province.label + '-' + e.city.label + '-' + e.area.label;
+		regionConfirm(list) {
+			this.selectList = list;
+			this.form = Object.assign({}, this.form, {
+				provinceCode: list[0].value,
+				cityCode: list[1].value,
+				countyCode: list[2].value
+			});
+		},
+		async getRegin() {
+			const [err, res] = await this.$u.api.postChinaareaListchinaareatree();
+			if (err) {
+				this.fail(err);
+				return;
+			}
+			this.list = trasRegion(res);
+		},
+		async postUcRoleAddrole() {
+			this.load()
+			const [err, res] = await await awaitWrap(
+				this.$u.post(
+				'/heter-web-api/uc/user/register',
+				{
+					...this.form,
+					inviteInfo: {
+						inviteCode: this.form.inviteInfo
+					}
+				}
+			));
+			this.hide();
+			if (err) {
+				this.fail(err);
+				return;
+			}
+			this.load('注册成功跳转中');
+			setTimeout(()=>{
+				uni.redirectTo({
+					url: '/pages/login/index'
+				})
+			},3000)
 		}
+
+		// postUcRoleAddrole
+	},
+	onShow() {
+		this.getRegin();
 	},
 	onReady() {
 		this.$refs.uForm.setRules(this.rules);
 	}
 };
+
+function trasRegion(data) {
+	if (!data || !data.length) {
+		return [];
+	}
+	return data.map(it => {
+		const obj = { value: it.value, label: it.name };
+		if (it.children && it.children.length) {
+			obj.children = trasRegion(it.children);
+		}
+		return obj;
+	});
+}
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+@import './login.scss';
+</style>
