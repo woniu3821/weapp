@@ -14,6 +14,10 @@ const _basePath = (url) => {
 }
 
 export default {
+    user_getuserinfo: _basePath('/user/getUserInfo'), // 获取用户信息
+    oauth_check_token: _basePath('/oauth/check_token'), // 检查登录状态
+    farmland_getmapcenter: _basePath('/farmland/getMapCenter'), // 获取中心点坐标
+    farmland_computesignedarea: _basePath('/farmland/computeSignedArea'), // 计算区域面积
     announcement_addannouncement: _basePath('/announcement/addAnnouncement'), // 添加公告信息
     announcement_deleteannouncement: _basePath('/announcement/deleteAnnouncement'), // 删除公告信息
     announcement_getannouncement: _basePath('/announcement/getAnnouncement'), // 获取公告信息

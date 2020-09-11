@@ -5,7 +5,7 @@
 			<view class="u-search-filter u-flex u-row-between">
 				<view class="u-flex">
 					<text class="text">刷新</text>
-					<image class="refresh" src="../../static/img/refresh.png"></image>
+					<image class="refresh" src="@/static/img/refresh.png"></image>
 				</view>
 				<view>
 					<u-dropdown inactive-color="#333" active-color="#50dab0" title-size="32"><u-dropdown-item @change="changeFilter" v-model="value" title="筛选" :options="options"></u-dropdown-item></u-dropdown>
@@ -92,7 +92,7 @@ export default {
 	methods: {
 		toMain(){
 			uni.navigateTo({
-			    url: '/pages/outletsSub/main/index'
+			    // url: '/pages/county/outletsSub/list'
 			});
 		},
 		changeEye(){

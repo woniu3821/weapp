@@ -7,20 +7,20 @@
 			</view>
 		</view>
 		<view v-if="active===0" class="container">
-			<title-bar>工商信息</title-bar>
+			<Bar>工商信息</Bar>
 			<view class="image-box">
-				<image src="../../../static/img/gsxxb.png" mode="aspectFit"></image>
+				<image src="../../static/img/gsxxb.png" mode="aspectFit"></image>
 			</view>
 		</view>
 		<view v-else-if="active===1" class="container">
-			<title-bar>肥料质检报告</title-bar>
+			<Bar>肥料质检报告</Bar>
 			<view class="image-box">
-				<image src="../../../static/img/zjbb.png" mode="aspectFit"></image>
+				<image src="../../static/img/zjbb.png" mode="aspectFit"></image>
 			</view>
 		</view>
 		<template v-else>
 			<view class="container scroll">
-				<title-bar>商品管理</title-bar>
+				<Bar>商品管理</Bar>
 				<view class="scroll-box">
 					<scroll-view scroll-y class="scroll-view" @scrolltolower="reachBottom">
 						<view class="page-box">
@@ -46,9 +46,11 @@
 </template>
 <script>
 	import List from './list.vue'
+	import Bar from '@/components/bar.vue'
 	export default {
 		components: {
-			List
+			List,
+			Bar
 		},
 		data() {
 			return {
@@ -63,15 +65,15 @@
 				current: 0,
 				active: 1,
 				list: [{
-						icon: '../../../static/img/gsxx.png',
+						icon: '../../static/img/gsxx.png',
 						title: '工商信息'
 					},
 					{
-						icon: '../../../static/img/zjbg.png',
+						icon: '../../static/img/zjbg.png',
 						title: '肥料质检报告'
 					},
 					{
-						icon: '../../../static/img/spgl.png',
+						icon: '../../static/img/spgl.png',
 						title: '商品管理'
 					}
 				]

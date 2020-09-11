@@ -31,7 +31,7 @@ const install = (Vue, vm) => {
 	{{/each}}
 	{{/if}}
 	 */
-	const  {{apiName}} = async (params={},id='',header) => {
+	const  {{apiName}} = async (params={},id='',header={auth:true}) => {
 	    // send request
 	    {{#if defaultParams}}
 	    params = Object.assign({

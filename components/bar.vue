@@ -11,7 +11,7 @@
 
 <script>
 export default{
-	name:'TitleBar'
+	name:'Bar'
 }
 </script>
 

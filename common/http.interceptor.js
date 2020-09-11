@@ -6,21 +6,26 @@ const install = (Vue, vm) => {
 		// 如果将此值设置为true，拦截回调中将会返回服务端返回的所有数据response，而不是response.data
 		// 设置为true后，就需要在this.$u.http.interceptor.response进行多一次的判断，请打印查看具体值
 		originalData: true,
-		// 设置自定义头部content-type
+		// 设置自定义头部Content-Type
 		// header: {
-		// 	'content-type': 'xxx'
+		// 	'Content-Type': 'xxx'
 		// }
 	});
 	// 请求拦截，配置Token等参数
 	Vue.prototype.$u.http.interceptor.request = (config) => {
-		if (JSON.stringify(config.header) === '{}' || config.header === undefined) {
+
+		if (config.header.auth) {
 			config.header = {
-				'Content-Type': "application/json"
+				'Authorization': 'bearer ' + vm.vuex_token,
+				'content-type': 'application/json;charset=UTF-8'
 			}
-		} else if (config.header) {
-			config.header = JSON.parse(JSON.stringify(config.header))
+		
+		} else if (config.header.auth === false) {
+			config.header = {
+				'content-type': 'application/json;charset=UTF-8'
+			}
 		} else {
-			config.header.Authorization = 'bearer ' + vm.vuex_token;
+			config.header = JSON.parse(JSON.stringify(config.header))
 		}
 
 
@@ -43,6 +48,19 @@ const install = (Vue, vm) => {
 	Vue.prototype.$u.http.interceptor.response = (res) => {
 		// 如果把originalData设置为了true，这里得到将会是服务器返回的所有的原始数据
 		// 判断可能变成了res.statueCode，或者res.data.code之类的，请打印查看结果
+		
+		if(res.statusCode===401){
+			uni.redirectTo({
+				url:'/pages/login/index.vue',
+				success() {
+					uni.showToast({
+						title:'登录失效请重新登录'
+					})
+				}
+			})
+		}
+		
+		
 		return res;
 	}
 }

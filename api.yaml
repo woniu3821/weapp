@@ -6,6 +6,42 @@ schemes:
   - 'http'
 basePath: ''
 paths:
+  /user/getUserInfo:
+    post:
+      description: '获取用户信息'
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+		  
+  /oauth/check_token:
+    post:
+      description: '检查登录状态'
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+		  
+  /farmland/getMapCenter:
+    post:
+      description: '获取中心点坐标'
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+		  
+  /farmland/computeSignedArea:
+    post:
+      description: '计算区域面积'
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+		  
   /announcement/addAnnouncement:
     post:
       description: '添加公告信息'

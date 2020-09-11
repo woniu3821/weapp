@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App'
 
-import '@/common/global';
+
 
 Vue.config.productionTip = false
 
@@ -58,7 +58,7 @@ const app = new Vue({
 // http拦截器，将此部分放在new Vue()和app.$mount()之间，才能App.vue中正常使用
 import httpInterceptor from '@/common/http.interceptor.js'
 Vue.use(httpInterceptor, app)
-
+import '@/common/global';
 // http接口API抽离，免于写url或者一些固定的参数
 import httpApi from '@/service/index.js'
 Vue.use(httpApi, app)

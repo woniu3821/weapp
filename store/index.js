@@ -32,8 +32,9 @@ const store = new Vuex.Store({
 		// 如果上面从本地获取的lifeData对象下有对应的属性，就赋值给state中对应的变量
 		// 加上vuex_前缀，是防止变量名冲突，也让人一目了然
 		vuex_user: lifeData.vuex_user ? lifeData.vuex_user : {
-			name: '明月'
+			name: 'admin'
 		},
+		vuex_home: lifeData.vuex_home ? lifeData.vuex_home : '',//首页地址
 		vuex_token: lifeData.vuex_token ? lifeData.vuex_token : '',
 		// 如果vuex_version无需保存到本地永久存储，无需lifeData.vuex_version方式
 		vuex_version: '1.0.1',
@@ -41,29 +42,30 @@ const store = new Vuex.Store({
 		vuex_deviceId:'',
 		vuex_permission: lifeData.vuex_permission ? lifeData.vuex_permission : false,
 		// 自定义tabbar数据
-		vuex_tabbar: [{
-				iconPath: "/static/img/home.png",
-				selectedIconPath: "/static/img/home_active.png",
-				text: '首页',
-				pagePath: '/pages/home/main'
+		vuex_tabbar: [
+			{
+				iconPath: "/static/img/nt.png",
+				selectedIconPath: "/static/img/nt_active.png",
+				text: '我的农田',
+				pagePath: '/pages/land/home/main'
 			},
 			{
-				iconPath: "/static/img/wd.png",
-				selectedIconPath: "/static/img/wd_active.png",
-				text: '大户/网点信息',
-				pagePath: '/pages/outlets/main'
+				iconPath: "/static/img/tc.png",
+				selectedIconPath: "/static/img/tc_active.png",
+				text: '营养套餐',
+				pagePath: '/pages/land/meal/main'
 			},
 			{
-				iconPath: "/static/img/gys.png",
-				selectedIconPath: "/static/img/gys_active.png",
-				text: '供应商管理',
-				pagePath: '/pages/supplier/main'
+				iconPath: "/static/img/sfjl.png",
+				selectedIconPath: "/static/img/sfjl_active.png",
+				text: '施肥记录',
+				pagePath: '/pages/land/record/main'
 			},
 			{
 				iconPath: "/static/img/my.png",
 				selectedIconPath: "/static/img/my_active.png",
 				text: '我的',
-				pagePath: '/pages/my/main'
+				pagePath: '/pages/county/my/main'
 			}
 		]
 	},

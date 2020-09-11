@@ -53,7 +53,7 @@ export default {
 				{
 					longitude: this.longitude,
 					latitude: this.latitude,
-					iconPath: '../../static/img/marker_location.png',
+					iconPath: '../../../static/img/marker_location.png',
 					width: 18,
 					height: 18,
 					label: { content: '大户A'+'\n'+'面积：500公顷',textAlign:'center', anchorX: 30, anchorY: -60, padding: 3, borderRadius: 5, bgColor: '#ffffff' }
@@ -78,7 +78,7 @@ export default {
 					type: 'gcj02 ',
 					success: location => {
 						if (location) {
-							this.markers.push({ longitude: location.longitude, latitude: location.latitude, iconPath: '../../static/img/marker_me.png', width: 18, height: 18 });
+							this.markers.push({ longitude: location.longitude, latitude: location.latitude, iconPath: '../../../static/img/marker_me.png', width: 18, height: 18 });
 						}
 					}
 				});

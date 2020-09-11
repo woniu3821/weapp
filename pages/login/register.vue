@@ -20,7 +20,7 @@
 </template>
 
 <script>
-	import { awaitWrap } from '@/common/tools';
+import { awaitWrap } from '@/common/tools';
 export default {
 	data() {
 		return {
@@ -123,7 +123,7 @@ export default {
 		submit() {
 			this.$refs.uForm.validate(valid => {
 				if (valid) {
-					this.postUcRoleAddrole()
+					this.postUcRoleAddrole();
 				}
 			});
 		},
@@ -137,7 +137,7 @@ export default {
 			});
 		},
 		async getRegin() {
-			const [err, res] = await this.$u.api.postChinaareaListchinaareatree();
+			const [err, res] = await this.$u.api.postChinaareaListchinaareatree({}, '', { auth: false });
 			if (err) {
 				this.fail(err);
 				return;
@@ -145,28 +145,30 @@ export default {
 			this.list = trasRegion(res);
 		},
 		async postUcRoleAddrole() {
-			this.load()
+			this.load();
 			const [err, res] = await await awaitWrap(
-				this.$u.post(
-				'/heter-web-api/uc/user/register',
-				{
+				this.$u.post('/heter-web-api/uc/user/register', {
 					...this.form,
 					inviteInfo: {
 						inviteCode: this.form.inviteInfo
 					}
+				}),
+				{
+					auth: false
 				}
-			));
+			);
 			this.hide();
 			if (err) {
 				this.fail(err);
 				return;
 			}
 			this.load('注册成功跳转中');
-			setTimeout(()=>{
-				uni.redirectTo({
+			setTimeout(() => {
+				this.$u.route({
+					type:'redirect',
 					url: '/pages/login/index'
 				})
-			},3000)
+			}, 3000);
 		}
 
 		// postUcRoleAddrole
