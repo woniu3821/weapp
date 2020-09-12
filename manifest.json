@@ -101,7 +101,7 @@
             "postcss" : true
         },
         "optimization" : {
-            "subPackages" : true
+            "subPackages" : false
         },
         "usingComponents" : true,
         "permission" : {

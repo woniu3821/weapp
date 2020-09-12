@@ -49,7 +49,6 @@
 				</view>
 			</scroll-view>
 		</view>
-		<u-tabbar :list="vuex_tabbar" :mid-button="false"></u-tabbar>
 	</view>
 </template>
 

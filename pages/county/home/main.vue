@@ -1,7 +1,6 @@
 <template>
 	<view class="wrap">
 		<view class="map_container"><map :scale="zoom" class="map" id="map" :markers="markers" :longitude="longitude" :latitude="latitude" :polygons="polygon"></map></view>
-		<u-tabbar :list="vuex_tabbar" :mid-button="false"></u-tabbar>
 	</view>
 </template>
 

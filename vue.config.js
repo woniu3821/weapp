@@ -7,7 +7,7 @@ module.exports = {
 			port: '8080', // 代理断就
 			proxy: {
 				'/heter-web-api': {
-					target: 'http://172.31.16.244:8080', // 目标代理接口地址
+					target: 'http://114.55.99.98', // 目标代理接口地址
 					// target: 'http://iwecloud18:31185/', // 目标代理接口地址
 					secure: false,
 					// onProxyReq: cookie,

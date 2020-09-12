@@ -11,7 +11,12 @@
 		}]
 	},
 	"pages": [
-		//公共page
+		{
+			"path": "pages/login/load",
+			"style": {
+				"navigationBarTitleText": "诺丽农业"
+			}
+		},
 		{
 			"path": "pages/login/index",
 			"style": {
@@ -27,56 +32,59 @@
 		{
 			"path": "pages/login/register",
 			"style": {
-				"navigationBarTitleText": "注册"
+				"navigationBarTitleText": "诺丽农业"
 			}
+
 		},
-		//大户
 		{
-			"path": "pages/land/home/main",
+			"path": "pages/tabs/tab0",
 			"style": {
-				"navigationBarTitleText": "我的农田"
+				"navigationBarTitleText": "诺丽农业"
 			}
+			
+
 		},
 		{
-			"path": "pages/land/meal/main",
+			"path": "pages/tabs/tab1",
 			"style": {
-				"navigationBarTitleText": "营养套餐"
+				"navigationBarTitleText": "诺丽农业"
 			}
+
 		},
 		{
-			"path": "pages/land/record/main",
+			"path": "pages/tabs/tab2",
 			"style": {
-				"navigationBarTitleText": "施肥记录"
+				"navigationBarTitleText": "诺丽农业"
 			}
+
 		},
-		//站点
 		{
-			"path": "pages/county/home/main",
+			"path": "pages/tabs/tab3",
 			"style": {
-				"navigationBarTitleText": "首页"
+				"navigationBarTitleText": "诺丽农业"
+			}
+
+		},
+		{
+			"path": "pages/subLand/map/main",
+			"style": {
+				"navigationBarTitleText": "新增农田"
 			}
 		},
 		{
-			"path": "pages/county/outlets/main",
+			"path": "pages/subCounty/index",
 			"style": {
 				"navigationBarTitleText": "大户/网点信息"
 			}
 		},
 		{
-			"path": "pages/county/supplier/main",
+			"path": "pages/subCounty/list",
 			"style": {
-				"navigationBarTitleText": "供应商管理"
-			}
-		},
-		//商户
-		{
-			"path": "pages/business/home/main",
-			"style": {
-				"navigationBarTitleText": "产品管理"
+				"navigationBarTitleText": "大户/网点信息"
 			}
 		}
-	],
 
+	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uView",
@@ -90,58 +98,17 @@
 		"borderStyle": "black",
 		"list": [
 			{
-				"pagePath": "pages/land/home/main",
-				"text": "我的农田"
+				"pagePath": "pages/tabs/tab0"
 			},
 			{
-				"pagePath": "pages/land/meal/main",
-				"text": "营养套餐"
+				"pagePath": "pages/tabs/tab1"
 			},
 			{
-				"pagePath": "pages/land/record/main",
-				"text": "施肥记录"
+				"pagePath": "pages/tabs/tab2"
 			},
 			{
-				"pagePath": "pages/my/main",
-				"text": "我的"
+				"pagePath": "pages/tabs/tab3"
 			}
 		]
-	},
-	"subPackages": [{
-			"root": "pages/subLand", //大户
-			"pages": [{
-				"path": "map/main",
-				"style": {
-					"navigationBarTitleText": "新增农田"
-				}
-			}]
-		},
-		{
-			"root": "pages/subCounty", //县站
-			"pages": [{
-				"path": "index",
-				"style": {
-					"navigationBarTitleText": "大户/网点信息"
-				}
-			}, {
-				"path": "list",
-				"style": {
-					"navigationBarTitleText": "大户/网点信息"
-				}
-			}]
-		},
-		{
-			"root": "pages/business", //供销商
-			"pages": [
-
-			]
-		}
-
-	],
-	"preloadRule": {
-		"pages/county/home/main": {
-			"network": "all",
-			"packages": ["pages/subCounty"]
-		}
 	}
 }

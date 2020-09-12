@@ -1,3 +1,5 @@
 <template>
-	<view>商家</view>
+	<view>
+		商家
+	</view>
 </template>

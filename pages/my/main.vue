@@ -29,7 +29,6 @@
 				<u-button >退出登录</u-button>
 			</view>
 		</view>
-		<u-tabbar :list="vuex_tabbar" :mid-button="false"></u-tabbar>
 	</view>
 </template>
 

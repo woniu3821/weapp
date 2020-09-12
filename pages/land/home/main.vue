@@ -1,154 +1,206 @@
 <template>
 	<view class="wrap">
 		<view class="top-view">
-			<view class="u-search-box"><u-search :show-action="false" v-model="search" input-align="center" placeholder="搜索地块" @search="reload"></u-search></view>
+			<view class="u-search-box">
+				<u-search :show-action="false" v-model="keyword" input-align="center" placeholder="搜索地块" @search="reload"></u-search>
+			</view>
 		</view>
 		<view class="scroll-box">
 			<scroll-view scroll-y class="scroll-view" @scrolltolower="reachBottom">
 				<view class="page-box">
-					<view class="item" v-for="(item, index) in orderList" :key="index">
-						<view class="left">
-							<u-image width="140" height="140" src="https://cdn.uviewui.com/uview/example/fade.jpg">
-								<view slot="error" style="font-size: 24rpx;">加载失败</view>
-							</u-image>
+					<u-swipe-action :show="item.show" :index="index" v-for="(item, index) in activityData" :key="item.id" @click="click"
+					 @open="open" :options="options">
+						<view class="item u-border-bottom">
+							<view class="title-wrap">
+								<text class="title u-line-1">{{ item.title }}</text>
+								<view class="bottom u-flex u-row-between">
+									<text class="title u-line-1">{{ item.title }}</text>
+									<text class="title u-line-1">2020年5月13号</text>
+								</view>
+							</view>
 						</view>
-						<view class="content" @tap="toMain">
-							<view class="title u-line-1">{{ item.title }}</view>
-							<view class="title u-line-1 c1">{{ item.title }}</view>
-							<view class="title u-line-1 c2">{{ item.title }}</view>
-						</view>
-					</view>
+					</u-swipe-action>
 					<u-loadmore :status="loadStatus" bgColor="#f2f2f2"></u-loadmore>
 				</view>
 			</scroll-view>
 		</view>
-		<u-tabbar :list="vuex_tabbar" :mid-button="false"></u-tabbar>
 	</view>
 </template>
 
 <script>
-export default {
-	data() {
-		return {
-			orderList: [
-				{
-					title: '【百搭日系甜美风'
-				},
-				{
-					title: '女短款百搭日系甜美风原创jk制服女2020新款'
+	export default {
+		data() {
+			return {
+				activityData: [],
+				loadStatus: 'loadmore',
+				init: true,
+				flag: false,
+				page: 1,
+				pageSize: 10,
+				beforePage: 1,
+				keyword: '',
+				options: [{
+					text: '删除',
+					style: {
+						backgroundColor: '#dd524d'
+					}
+				}]
+
+			};
+		},
+		methods: {
+			toMain() {
+				// uni.navigateTo({
+				// 	url: '/pages/outletsSub/main/index'
+				// });
+			},
+			reload(){
+				this.getActivityData(true, this.activityData.length).then(() => {
+					this.flag = false
+				})
+				
+			},
+			click(index, index1) {
+				if (index1 == 1) {
+					this.activityData.splice(index, 1);
+					this.$u.toast(`删除了第${index}个`);
+				} else {
+					this.list[index].show = false;
+					this.$u.toast(`收藏成功`);
 				}
-			],
-			loadStatus: 'loadmore'
-		};
-	},
-	methods: {
-		reload() {},
-		toMain() {
-			// uni.navigateTo({
-			// 	url: '/pages/outletsSub/main/index'
-			// });
-		},
-		reachBottom() {
-			// 此tab为空数据
-			if (this.current != 2) {
-				this.loadStatus = 'loading';
-				setTimeout(() => {
-					this.getOrderList();
-				}, 1200);
+			},
+			// 如果打开一个的时候，不需要关闭其他，则无需实现本方法
+			open(index) {
+				// 先将正在被操作的swipeAction标记为打开状态，否则由于props的特性限制，
+				// 原本为'false'，再次设置为'false'会无效
+				this.list[index].show = true;
+				this.list.map((val, idx) => {
+					if (index != idx) this.list[idx].show = false;
+				})
+			},
+
+			reachBottom() {
+				// 当onShow的状态进行时，阻止加载更多再一次获取列表数据
+				this.getActivityData()
+			},
+			// 页面数据
+			async getActivityData(initList = false, nowPageSize) {
+				if (initList) {
+					this.page = 1
+				}
+
+				let params = {
+					pageNum: this.page,
+					pageSize: nowPageSize || this.pageSize,
+					keyword: this.keyword
+				}
+
+				this.loadStatus = 'loading'
+				initList && this.load('加载中')
+
+
+				cosnt[err, res] = await this.$u.api.postFarmlandQueryfarmlandspage(params)
+
+				this.hide();
+				if (err) {
+					this.fail(err);
+					return;
+				}
+
+				let total = res.data.total
+				initList ?
+					(this.activityData = res.data.data) : (this.activityData = this.activityData.concat(res.data.data))
+				this.page = this.page + 1
+				// 如果本次有传nowPageSize，将page还原为跳转前的页码，下一次再获取更多接着之前的页码和页数进行获取
+				if (nowPageSize) {
+					this.page = this.beforePage
+				}
+				if (this.activityData.length < total) {
+					this.loadStatus = 'loadmore'
+				} else {
+					this.loadStatus = 'nomore'
+				}
 			}
 		},
-		// 页面数据
-		getOrderList() {
-			for (let i = 0; i < 50; i++) {
-				let data = {
-					title: '制服女2020新款'
-				};
-				data.id = this.$u.guid();
-				this.orderList.push(data);
+		mounted() {
+			if (this.init) {
+				this.getActivityData(true).then(() => {
+					this.init = false
+				})
 			}
-			this.loadStatus = 'loadmore';
-		}
-	},
-	onLoad() {
-		this.getOrderList();
+
+		},
+		created() {
+			// 阻止onLoad触发该逻辑
+			if (!this.init) {
+				// 防止底部的加载更多再次获取列表数据
+				this.flag = true
+				this.getActivityData(true, this.activityData.length).then(() => {
+					this.flag = false
+				})
+			}
+		},
+		beforeDestroy() {
+			// 页面离开记录当前的页码
+			this.beforePage = this.page
+		},
+		onReachBottom() {
+			// 当onShow的状态进行时，阻止加载更多再一次获取列表数据
+			!this.flag && this.getActivityData()
+		},
+
 	}
-};
 </script>
 
 <style lang="scss" scoped>
-.wrap {
-	display: flex;
-	flex-direction: column;
-	height: 100vh;
-	width: 100%;
-	overflow: hidden;
-}
-
-.container {
-	width: 718rpx;
-	margin: 0 auto;
-	border-radius: 5rpx;
-	background-color: #fff;
-	padding: 35rpx;
-	box-shadow: 0 3rpx 10rpx #eee;
-}
-
-.top-view {
-	flex-shrink: 0;
-	background-color: #f2f2f2;
-
-	.u-search-box {
-		border-bottom: 10rpx solid #f2f2f2;
-		padding: 18rpx 30rpx;
-		background-color: #fff;
+	.wrap {
+		display: flex;
+		flex-direction: column;
+		height: 100vh;
+		width: 100%;
+		overflow: hidden;
 	}
-}
 
-.scroll-box {
-	flex: 1;
-	height: 1px;
+	.container {
+		width: 718rpx;
+		margin: 0 auto;
+		border-radius: 5rpx;
+		background-color: #fff;
+		padding: 35rpx;
+		box-shadow: 0 3rpx 10rpx #eee;
+	}
 
-	.scroll-view {
-		height: 100%;
+	.top-view {
+		flex-shrink: 0;
+		background-color: #f2f2f2;
 
-		.page-box {
-			.item {
-				width: 100%;
-				background-color: #ffffff;
-				box-sizing: border-box;
-				display: flex;
-				align-items: center;
+		.u-search-box {
+			border-bottom: 10rpx solid #f2f2f2;
+			padding: 18rpx 30rpx;
+			background-color: #fff;
+		}
+	}
 
-				.left {
-					margin-right: 24rpx;
-				}
+	.scroll-box {
+		flex: 1;
+		height: 1px;
 
-				.content {
-					width: 100%;
-					padding: 12rpx 0;
-					border-bottom: 1px solid #e4e7ed;
-					flex: 1;
+		.scroll-view {
+			height: 100%;
+
+			.page-box {
+				.item {
 					display: flex;
-					flex-direction: column;
-					justify-content: space-between;
-
-					.title {
-						font-size: 32rpx;
-						color: #333;
-					}
-					.title.c1 {
-						color: #999999;
-					}
-					.title.c2 {
-						color: #ff4500;
-					}
+					padding: 20rpx;
 				}
-			}
 
-			.item:last-child .content {
-				border-bottom: 0;
+				.title {
+					text-align: left;
+					font-size: 28rpx;
+					color: $u-content-color;
+					margin-top: 20rpx;
+				}
 			}
 		}
 	}
-}
 </style>

@@ -32,12 +32,6 @@ Vue.mixin({
 		},
 		hide() {
 			uni.hideLoading()
-		},
-		post(url,params={},header){
-			return this.$u.post(url,params,header)
-		},
-		get(){
-			return this.$u.get(url,params={},header)
 		}
 	}
 })

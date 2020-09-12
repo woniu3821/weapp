@@ -7,25 +7,25 @@ const allMenus = {
 			iconPath: "static/img/nt.png",
 			selectedIconPath: "static/img/nt_active.png",
 			text: '我的农田',
-			pagePath: 'pages/land/home/main'
+			pagePath: 'pages/tabs/tab0'
 		},
 		{
 			iconPath: "static/img/tc.png",
 			selectedIconPath: "static/img/tc_active.png",
 			text: '营养套餐',
-			pagePath: 'pages/land/meal/main'
+			pagePath: 'pages/tabs/tab1'
 		},
 		{
 			iconPath: "static/img/sfjl.png",
 			selectedIconPath: "static/img/sfjl_active.png",
 			text: '施肥记录',
-			pagePath: 'pages/land/record/main'
+			pagePath: 'pages/tabs/tab2'
 		},
 		{
 			iconPath: "static/img/my.png",
 			selectedIconPath: "static/img/my_active.png",
 			text: '我的',
-			pagePath: 'pages/county/my/main'
+			pagePath: 'pages/tabs/tab3'
 		}
 	],
 	s2: [ //站点
@@ -33,40 +33,39 @@ const allMenus = {
 			iconPath: "static/img/home.png",
 			selectedIconPath: "static/img/home_active.png",
 			text: '首页',
-			pagePath: 'pages/county/home/main'
+			pagePath: 'pages/tabs/tab0'
 		},
 		{
 			iconPath: "static/img/wd.png",
 			selectedIconPath: "static/img/wd_active.png",
 			text: '大户/网点信息',
-			pagePath: 'pages/county/outlets/main'
+			pagePath: 'pages/tabs/tab1'
 		},
 		{
 			iconPath: "static/img/gys.png",
 			selectedIconPath: "static/img/gys_active.png",
 			text: '供应商管理',
-			pagePath: 'pages/county/supplier/main'
+			pagePath: 'pages/tabs/tab2'
 		},
 		{
 			iconPath: "static/img/my.png",
 			selectedIconPath: "static/img/my_active.png",
 			text: '我的',
-			pagePath: 'pages/county/my/main'
+			pagePath: 'pages/tabs/tab3'
 		}
 	],
 	s3: [ //商户
-
 		{
 			iconPath: "static/img/cp.png",
 			selectedIconPath: "static/img/cp_active.png",
 			text: '产品管理',
-			pagePath: 'pages/county/home/main'
+			pagePath: 'pages/tabs/tab0'
 		},
 		{
 			iconPath: "static/img/my.png",
 			selectedIconPath: "static/img/my_active.png",
 			text: '我的',
-			pagePath: 'pages/county/my/main'
+			pagePath: 'pages/tabs/tab3'
 		}
 	]
 }
@@ -81,9 +80,9 @@ const roles={
 export function getMenu(role) {
 		let tag=''
 		for(let key in roles){
-			if(roles[key].indexOf(2)>-1){
+			if(roles[key].indexOf(4)>-1){
 				tag=key;
 			}
 		}
-		return	allMenus[tag]
+		return	[tag,allMenus[tag]]
 	}

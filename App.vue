@@ -7,6 +7,7 @@ export default {
 		username: '全局变量'
 	},
 	onLaunch() {
+		uni.hideTabBar();
 		getPermission().then(res => {
 			this.$u.vuex('vuex_permission', res);
 		});

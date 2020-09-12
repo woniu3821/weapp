@@ -2,7 +2,7 @@
 // 同时，我们也可以在此使用getApp().globalData，如果你把token放在getApp().globalData的话，也是可以使用的
 const install = (Vue, vm) => {
 	Vue.prototype.$u.http.setConfig({
-		baseUrl: 'http://172.31.16.244:8080',
+		baseUrl: 'http://114.55.99.98',
 		// 如果将此值设置为true，拦截回调中将会返回服务端返回的所有数据response，而不是response.data
 		// 设置为true后，就需要在this.$u.http.interceptor.response进行多一次的判断，请打印查看具体值
 		originalData: true,
@@ -17,8 +17,10 @@ const install = (Vue, vm) => {
 		if (config.header.auth) {
 			config.header = {
 				'Authorization': 'bearer ' + vm.vuex_token,
-				'content-type': 'application/json;charset=UTF-8'
+				'content-type': 'application/json;charset=UTF-8',
+				deviceid:undefined
 			}
+			config.header=JSON.parse(JSON.stringify(config.header))
 		
 		} else if (config.header.auth === false) {
 			config.header = {
@@ -48,9 +50,9 @@ const install = (Vue, vm) => {
 	Vue.prototype.$u.http.interceptor.response = (res) => {
 		// 如果把originalData设置为了true，这里得到将会是服务器返回的所有的原始数据
 		// 判断可能变成了res.statueCode，或者res.data.code之类的，请打印查看结果
-		
 		if(res.statusCode===401){
-			uni.redirectTo({
+			
+			uni.reLaunch({
 				url:'/pages/login/index.vue',
 				success() {
 					uni.showToast({
