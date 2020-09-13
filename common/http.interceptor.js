@@ -1,8 +1,10 @@
 // 这里的vm，就是我们在vue文件里面的this，所以我们能在这里获取vuex的变量，比如存放在里面的token
 // 同时，我们也可以在此使用getApp().globalData，如果你把token放在getApp().globalData的话，也是可以使用的
+import cofig from '@/common/config.js'
+// 'http://172.31.16.244:8080'
 const install = (Vue, vm) => {
 	Vue.prototype.$u.http.setConfig({
-		baseUrl: 'http://114.55.99.98',
+		baseUrl:cofig.baseUrl,
 		// 如果将此值设置为true，拦截回调中将会返回服务端返回的所有数据response，而不是response.data
 		// 设置为true后，就需要在this.$u.http.interceptor.response进行多一次的判断，请打印查看具体值
 		originalData: true,
@@ -17,14 +19,13 @@ const install = (Vue, vm) => {
 		if (config.header.auth) {
 			config.header = {
 				'Authorization': 'bearer ' + vm.vuex_token,
-				'content-type': 'application/json;charset=UTF-8',
-				deviceid:undefined
+				'Content-Type': 'application/json;charset=UTF-8'
 			}
 			config.header=JSON.parse(JSON.stringify(config.header))
 		
 		} else if (config.header.auth === false) {
 			config.header = {
-				'content-type': 'application/json;charset=UTF-8'
+				'Content-Type': 'application/json;charset=UTF-8'
 			}
 		} else {
 			config.header = JSON.parse(JSON.stringify(config.header))

@@ -227,28 +227,24 @@ export function getPermission() {
 					uni.authorize({
 						scope: 'scope.userLocation',
 						success() {
-
 							resolve(true)
 						},
 						fail() {
+							
 							uni.showModal({
-								content: '检测到您没打开定位权限，是否去设置打开？',
+								content: '检测到您没打开定位权限，无法定位到您的位置，是否去设置打开？',
 								confirmText: "确认",
 								cancelText: "取消",
 								success: function(res) {
 									//点击“确认”时打开设置页面
 									if (res.confirm) {
-										uni.openSetting({
-											success: (res) => {
-												var statu = res.authSetting;
-												if (statu['scope.userLocation']) {
-
-
-													resolve(true)
-												}
-											}
-										})
+										resolve(false)
+									
 									} else {
+										uni.showToast({
+											icon:'none',
+											title:'获取位置失败'
+										})
 										resolve(false)
 									}
 								}
@@ -257,6 +253,8 @@ export function getPermission() {
 						}
 
 					})
+				}else{
+					resolve(true)
 				}
 			}
 		})

@@ -6,49 +6,60 @@
 				<image src="../../static/img/user-head.png"  mode="aspectFit"></image>
 				<view class="info">
 					<view class="name">
-						我是谁谁谁
-					</view>
-					<view class="desc">
-						登陆更精彩
+						{{vuex_user.nickname}}
 					</view>
 				</view>
 			</view>
 			<view class="container list">
-				<view class="item" v-for="(item,index) in list" :key="index">
+				<view class="item" v-for="(item,index) in list" :key="index" @click="toView(item.path)">
 					<image :src="item.icon" mode="aspectFit"></image>
 					<text>{{item.title}}</text>
 				</view>
 			</view>
-			<view class="container action">
+<!-- 			<view class="container action">
 				<u-cell-group :border="false">
 					<u-cell-item title="反馈意见"></u-cell-item>
 					<u-cell-item :border-bottom="false" title="联系客服"></u-cell-item>
 				</u-cell-group>
-			</view>
+			</view> -->
 			<view class="btn">
-				<u-button >退出登录</u-button>
+				<u-button @click="logout">退出登录</u-button>
 			</view>
 		</view>
 	</view>
 </template>
 
 <script>
+	import {listMap} from './libs.js'
+	
 	export default {
 		data() {
 			return {
-				list: [{
-						icon: '../../static/img/ryxx.png',
-						title: '人员信息'
-					},
-					{
-						icon: '../../static/img/xxfb.png',
-						title: '信息发布'
-					},
-					{
-						icon: '../../static/img/xxck.png',
-						title: '信息查看'
-					}
-				]
+			
+			}
+		},
+		methods:{
+			toView(path){
+				this.$u.route({
+					type:'to',
+					url:path
+				})
+			},
+			async logout(){
+				const [err, res] = await this.$u.api.postAuthLogout();
+				if (err) {
+					this.fail(err);
+					return;
+				}
+				this.$u.route({
+					type: 'reLaunch',
+					url: '/pages/login/load'
+				});
+			}
+		},
+		computed:{
+			list(){
+				return listMap[this.vuex_type]
 			}
 		}
 	}
@@ -102,9 +113,8 @@
 		.info {
 			display: flex;
 			flex-direction: column;
-			justify-content: space-between;
+			align-items: center;
 			color: #fff;
-
 			.name {
 				font-size: 34rpx;
 

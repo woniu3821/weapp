@@ -5,7 +5,7 @@ import {
 	export default {
 		methods: {
 			async postUserGetuserinfo() {
-				const [err, res] = await this.$u.api.postUserGetuserinfo();
+				const [err, res] = await this.$u.api.postUcUserGetuserbasicinfo();
 				if (err) {
 					this.fail(err);
 					this.hide();
@@ -14,7 +14,17 @@ import {
 				}
 
 				this.$u.vuex('vuex_user', res);
-				let [userType, tabs] = getMenu(res.userType);
+				// if(res.type===-1){
+				// 	this.fail('管理员请在pc登录');
+				// 	return;
+				// }
+				
+				let [userType, tabs] = getMenu(res.type);
+				
+				if(userType!='s1'){
+					this.fail('您暂无权限登录');
+					return;
+				}
 
 				let home = '/' + tabs[0].pagePath;
 				this.$u.vuex('vuex_home', home);

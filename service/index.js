@@ -16,6 +16,17 @@ const apis={}
 
 const install = (Vue, vm) => {
 	/**
+	 * 退出登录
+	 * @param { Object } params 请求参数
+	 * @param {  } params[''] 
+	 */
+	const  postAuthLogout = async (params={},id='',header={auth:true}) => {
+	    // send request
+	    return awaitWrap(vm.$u.post(`${api.auth_logout+id}`, params, header))
+	}
+	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
+	apis.postAuthLogout=postAuthLogout
+	/**
 	 * 获取用户信息
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
@@ -130,12 +141,12 @@ const install = (Vue, vm) => {
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 
 	 */
-	const  postAnnouncementReadannouncements = async (params={},id='',header={auth:true}) => {
+	const  postAnnouncementReadannouncement = async (params={},id='',header={auth:true}) => {
 	    // send request
-	    return awaitWrap(vm.$u.post(`${api.announcement_readannouncements+id}`, params, header))
+	    return awaitWrap(vm.$u.post(`${api.announcement_readannouncement+id}`, params, header))
 	}
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
-	apis.postAnnouncementReadannouncements=postAnnouncementReadannouncements
+	apis.postAnnouncementReadannouncement=postAnnouncementReadannouncement
 	/**
 	 * 更新公告信息
 	 * @param { Object } params 请求参数

@@ -1,36 +1,29 @@
 <template>
 	<view class="wrap">
-		正在开发中,敬请期待。
-		<!-- <view class="top-view">
+		<view class="top-view">
 			<view class="u-search-box">
-				<u-search :show-action="false" v-model="keyword" input-align="center" placeholder="搜索地块" @search="reload"></u-search>
+				<u-search :show-action="false" v-model="keyword" input-align="center" placeholder="搜索公告" @search="reload"></u-search>
 			</view>
 		</view>
 		<view class="scroll-box">
 			<scroll-view scroll-y class="scroll-view" @scrolltolower="reachBottom">
-				<view class="page-box">
-					<u-swipe-action :show="item.show" :index="index" v-for="(item, index) in activityData" :key="item.id" @click="click"
-					 @open="open" :options="options">
-						<view class="item u-border-bottom">
-							<view class="title u-flex u-row-between">
-								<view class="title u-line-1">{{ item.name }}</view>
-							</view>
-							<view class="bottom  u-flex u-row-between">
-								<text class="title u-line-1">面积：{{item.farmlandArea}}公顷</text>
-								<text class="title u-line-1">2020年5月13号</text>
-							</view>
+				<view class="item u-flex u-row-between" @click="toView(item)" v-for="(item,index) in activityData" :key="item.id">
+					<view class="left u-flex u-row-between">
+						<view :class="['dot',{active:!item.isRead}]"></view>
+						<view class="title u-line-1">
+							{{item.title}}
 						</view>
-					</u-swipe-action>
-					<u-loadmore :status="loadStatus" bgColor="#f2f2f2"></u-loadmore>
+					</view>
+					<view class="right u-flex">
+						<view class="content title u-line-1">
+							{{item.createTime}}
+						</view>
+						<u-icon name="arrow-right" color="#999999"></u-icon>
+					</view>
 				</view>
+				<u-loadmore :status="loadStatus" bgColor="#f2f2f2"></u-loadmore>
 			</scroll-view>
 		</view>
-		圆形点击框 
-		<view class="round-click">
-			<navigator url='/pages/subLand/map/main'>
-				<u-icon name="plus" size="35" color="#fff"></u-icon>
-			</navigator>
-		</view> -->
 	</view>
 </template>
 
@@ -45,21 +38,7 @@
 				page: 1,
 				pageSize: 10,
 				beforePage: 1,
-				keyword: '',
-				options: [
-					{
-						text: '详情',
-						style: {
-							backgroundColor: '#33cdad'
-						}
-					},
-					{
-						text: '删除',
-						style: {
-							backgroundColor: '#dd524d'
-						}
-					}
-				]
+				keyword: ''
 			};
 		},
 		methods: {
@@ -69,49 +48,27 @@
 				})
 
 			},
-			click(index, index1) {
-				const {id,name,longitude,latitude,regionCode}=  this.activityData[index]
-				if (index1 == 1) {
-					this.postFarmlandDeletefarmland(id)
-				} else {
-					this.$u.route({
-						type: 'to',
-						url: '/pages/subLand/index',
-						params:{
-							name,
-							id,
-							longitude,
-							latitude,
-							regionCode
-						}
-					})
-				}
-			},
-			// 如果打开一个的时候，不需要关闭其他，则无需实现本方法
-			open(index) {
-				// 先将正在被操作的swipeAction标记为打开状态，否则由于props的特性限制，
-				// 原本为'false'，再次设置为'false'会无效
-				this.activityData[index].show = true;
-				this.activityData.map((val, idx) => {
-					if (index != idx) this.activityData[idx].show = false;
+			toView(item) {
+				const {
+					id,
+					title,
+					content
+				} = item
+
+				this.$u.route({
+					type: 'to',
+					url: '/pages/my/notice',
+					params: {
+						id,
+						title,
+						content
+					}
 				})
 			},
-
 			reachBottom() {
 				// 当onShow的状态进行时，阻止加载更多再一次获取列表数据
 				this.getActivityData()
 			},
-			async postFarmlandDeletefarmland(farmlandId) {
-				this.load()
-				const [err, res] = await this.$u.api.postFarmlandDeletefarmland({}, '/'+farmlandId)
-				this.hide();
-				if (err) {
-					this.fail(err);
-					return;
-				}
-				this.reload()
-			},
-			// 页面数据
 			async getActivityData(initList = false, nowPageSize) {
 				if (initList) {
 					this.page = 1
@@ -125,7 +82,7 @@
 
 				this.loadStatus = 'loading'
 				initList && this.load('加载中')
-				const [err, res] = await this.$u.api.postFarmlandQueryfarmlandspage(params)
+				const [err, res] = await this.$u.api.postAnnouncementQueryannouncementspage(params)
 				this.hide();
 				if (err) {
 					this.fail(err);
@@ -148,7 +105,7 @@
 				}
 			}
 		},
-		mounted() {
+		onLoad() {
 			if (this.init) {
 				this.getActivityData(true).then(() => {
 					this.init = false
@@ -156,7 +113,7 @@
 			}
 
 		},
-		created() {
+		onShow() {
 			// 阻止onLoad触发该逻辑
 			if (!this.init) {
 				// 防止底部的加载更多再次获取列表数据
@@ -166,7 +123,7 @@
 				})
 			}
 		},
-		beforeDestroy() {
+		onHide() {
 			// 页面离开记录当前的页码
 			this.beforePage = this.page
 		},
@@ -181,7 +138,7 @@
 		return data.map((item) => {
 			return { ...item,
 				show: false,
-				farmlandArea:(item.farmlandArea/10000).toFixed(4)
+				farmlandArea: (item.farmlandArea / 10000).toFixed(4)
 			}
 		})
 	}
@@ -244,20 +201,49 @@
 		.scroll-view {
 			height: 100%;
 
-			.page-box {
-				.item {
-					width: 100%;
-					padding: 20rpx;
-					box-sizing: border-box;
+
+			.item {
+				padding: 30rpx 0;
+				box-sizing: border-box;
+				border-bottom: 1px solid #e4e7ed;
+				margin: 0 30rpx;
+
+				.left {
+					width: 49%;
+
+					.dot {
+						width: 10rpx;
+						height: 10rpx;
+						border-radius: 50%;
+						background-color: #bbbbbb;
+						margin-right: 10rpx;
+					}
+
+					.dot.active {
+						background-color: #50dab0;
+					}
+				}
+
+				.right {
+					width: 49%;
+
+					.content {
+						text-align: right;
+						padding-right: 10rpx;
+						color: #999999;
+					}
 				}
 
 				.title {
+					flex: 1;
 					text-align: left;
 					font-size: 28rpx;
-					color: $u-content-color;
-					margin-top: 20rpx;
+					color: #333;
 				}
 			}
+
+
+
 		}
 	}
 </style>

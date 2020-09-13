@@ -30,9 +30,40 @@
 			}
 		},
 		{
+			"path": "pages/my/personal",
+			"style": {
+				"navigationBarTitleText": "个人信息"
+			}
+		},
+		{
+			"path": "pages/my/noticeList",
+			"style": {
+				"navigationBarTitleText": "公告查看"
+			}
+		},
+		{
+			"path": "pages/my/notice",
+			"style": {
+				"navigationBarTitleText": "公告查看详情"
+			}
+		},
+		{
+			"path": "pages/permission/main",
+			"style": {
+				"navigationBarTitleText": "获取授权"
+			}
+		},
+		{
 			"path": "pages/login/register",
 			"style": {
 				"navigationBarTitleText": "诺丽农业"
+			}
+
+		},
+		{
+			"path": "pages/subLand/index",
+			"style": {
+				"navigationBarTitleText": "农田详情"
 			}
 
 		},

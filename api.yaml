@@ -6,6 +6,15 @@ schemes:
   - 'http'
 basePath: ''
 paths:
+  /auth/logout:
+    post:
+      description: '退出登录'
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+		  
   /user/getUserInfo:
     post:
       description: '获取用户信息'
@@ -96,7 +105,7 @@ paths:
         200:
           description: '请求成功'
 
-  /announcement/readAnnouncements:
+  /announcement/readAnnouncement:
     post:
       description: 获取未读列表
       parameters:

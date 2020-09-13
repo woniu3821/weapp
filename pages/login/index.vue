@@ -28,18 +28,17 @@
 </template>
 
 <script>
-	import {
-		awaitWrap
-	} from '@/common/tools';
 
-	import mixins from './mixins.js'
+	import mixins from './mixins.js'	
+	import config from '@/common/config.js'
+	
 	export default {
-		mixins:[mixins],
+		mixins: [mixins],
 		data() {
 			return {
 				form: {
-					username: 'admin',
-					password: '123456',
+					username: '',
+					password: '',
 					imageCode: ''
 				},
 				rules: {
@@ -63,47 +62,51 @@
 				this.$refs.uForm.validate(valid => {
 					if (valid) {
 						this.login(this.form);
-					} else {
-						console.log('验证失败');
 					}
 				});
 			},
 			async login(data) {
-				this.load('加载中...');
-				const [err, res] = await awaitWrap(
-					this.$u.post('/heter-web-api/auth/form', data, {
+				this.load('加载中...');			
+				const [err, res] = await uni.request({
+					url:config.baseUrl +'/heter-web-api/auth/form',
+					method:'POST',
+					data,
+					header: {
 						Authorization: 'Basic bXV3dS1jbGllbnQtYXV0aDptdXd1Q2xpZW50U2VjcmV0',
 						'Content-Type': 'application/x-www-form-urlencoded',
 						deviceId: this.vuex_deviceId
-					})
-				);
+					}
+				})
 
-				if (err) {
+				if (err||res.data.code!==200) {
 					this.hide();
 					this.getImage();
-					this.fail(err);
+					this.fail(err||res.data.message);
+					this.form.imageCode = ''
 					return;
 				}
-				this.$u.vuex('vuex_token', res.access_token);
+				this.$u.vuex('vuex_token', res.data.result.access_token);
 				this.postUserGetuserinfo();
 			},
 			async getImage() {
 				const deviceId = this.$u.guid(20);
 				this.$u.vuex('vuex_deviceId', deviceId);
+				const [err, res] = await uni.request({
+					url:config.baseUrl +'/heter-web-api/auth/code/image',
+					method:'POST',
+					data: {},
+					header: {
+						'Content-Type': 'application/x-www-form-urlencoded',
+						deviceId
+					}
+				})
+				
 
-				const [err, res] = await awaitWrap(
-					this.$u.post(
-						'/heter-web-api/auth/code/image', {}, {
-							'Content-Type': 'application/x-www-form-urlencoded',
-							deviceId
-						}
-					)
-				);
-				if (err) {
-					this.fail(err);
+				if (err||res.data.code!==200) {
+					this.fail(err||res.data.message);
 					return;
 				}
-				this.imageData = 'data:image/png;base64,' + res.replace(/[\r\n]/g, '');
+				this.imageData = 'data:image/png;base64,' + res.data.result.replace(/[\r\n]/g, '');
 			}
 		},
 		onShow() {
@@ -118,10 +121,9 @@
 
 <style lang="scss" scoped>
 	@import './login.scss';
+
 	.wrap {
 		height: 100vh;
 		width: 100%;
 	}
-
-
 </style>

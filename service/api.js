@@ -14,6 +14,7 @@ const _basePath = (url) => {
 }
 
 export default {
+    auth_logout: _basePath('/auth/logout'), // 退出登录
     user_getuserinfo: _basePath('/user/getUserInfo'), // 获取用户信息
     oauth_check_token: _basePath('/oauth/check_token'), // 检查登录状态
     farmland_getmapcenter: _basePath('/farmland/getMapCenter'), // 获取中心点坐标
@@ -24,7 +25,7 @@ export default {
     announcement_listannouncement: _basePath('/announcement/listAnnouncement'), // 列表公告信息
     announcement_listreadannouncement: _basePath('/announcement/listReadAnnouncement'), // 获取未读列表
     announcement_queryannouncementspage: _basePath('/announcement/queryAnnouncementsPage'), // 查询公告信息
-    announcement_readannouncements: _basePath('/announcement/readAnnouncements'), // 获取未读列表
+    announcement_readannouncement: _basePath('/announcement/readAnnouncement'), // 获取未读列表
     announcement_updateannouncement: _basePath('/announcement/updateAnnouncement'), // 更新公告信息
     auth_code: _basePath('/auth/code'), // 校验验证码
     chinaarea_addchinaarea: _basePath('/chinaArea/addChinaArea'), // 添加地址库信息

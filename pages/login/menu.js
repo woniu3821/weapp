@@ -15,12 +15,12 @@ const allMenus = {
 			text: '营养套餐',
 			pagePath: 'pages/tabs/tab1'
 		},
-		{
-			iconPath: "static/img/sfjl.png",
-			selectedIconPath: "static/img/sfjl_active.png",
-			text: '施肥记录',
-			pagePath: 'pages/tabs/tab2'
-		},
+		// {
+		// 	iconPath: "static/img/sfjl.png",
+		// 	selectedIconPath: "static/img/sfjl_active.png",
+		// 	text: '施肥记录',
+		// 	pagePath: 'pages/tabs/tab2'
+		// },
 		{
 			iconPath: "static/img/my.png",
 			selectedIconPath: "static/img/my_active.png",
@@ -71,9 +71,9 @@ const allMenus = {
 }
 
 const roles={
-	s1:[4],//大户
-	s2:[-1,0,1,2,3],//县耕
-	s3:[5,6,7]
+	s1:[4,5],//大户
+	s2:[0,1,2,3],//县耕
+	s3:[6,7]
 }
 
 
