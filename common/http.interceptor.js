@@ -51,10 +51,9 @@ const install = (Vue, vm) => {
 	Vue.prototype.$u.http.interceptor.response = (res) => {
 		// 如果把originalData设置为了true，这里得到将会是服务器返回的所有的原始数据
 		// 判断可能变成了res.statueCode，或者res.data.code之类的，请打印查看结果
-		if(res.statusCode===401){
-			
+		if(res.statusCode===401||res.data&&res.data.code===401){
 			uni.reLaunch({
-				url:'/pages/login/index.vue',
+				url:'/pages/login/index',
 				success() {
 					uni.showToast({
 						title:'登录失效请重新登录'

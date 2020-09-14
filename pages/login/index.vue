@@ -37,8 +37,8 @@
 		data() {
 			return {
 				form: {
-					username: '',
-					password: '',
+					username: 'superadmin',
+					password: 'sadmin@123',
 					imageCode: ''
 				},
 				rules: {

@@ -96,7 +96,7 @@
         "appid" : "wx1cf37e613f844a6e",
         "setting" : {
             "urlCheck" : false,
-            "es6" : true,
+            "es6" : false,
             "minified" : true,
             "postcss" : true
         },

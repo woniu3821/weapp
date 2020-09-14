@@ -10,6 +10,9 @@
 			<Bar v-if='showTitle'>{{title}}</Bar>
 			<template v-if="active===0">
 				<Solid :params="params"></Solid>
+			</template>	
+			<template v-if="active===3">
+				<Muck :params="params"></Muck>
 			</template>
 <!-- 			<template v-if="active===1">
 				<view class="image-box">
@@ -26,10 +29,12 @@
 <script>
 	import Bar from '@/components/bar.vue'
 	import Solid from './solid.vue'
+	import Muck from './muck.vue'
 	export default {
 		components: {
 			Bar,
-			Solid
+			Solid,
+			Muck
 		},
 		data() {
 			return {

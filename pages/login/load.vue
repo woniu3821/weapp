@@ -24,32 +24,7 @@
 		methods: {
 			async checkLogin() {
 				if (this.vuex_token) {
-					// const [err, res] = await uni.request({
-					// 	url:config.baseUrl +'/heter-web-api/oauth/check_token',
-					// 	method:'POST',
-					// 	data: {
-					// 		token: this.vuex_token
-					// 	},
-					// 	header: {
-					// 		'Content-Type': 'application/x-www-form-urlencoded'
-					// 	}
-					// })
-					
-					// if (err||res.data.code!==200) {
-					// 	this.fail(err||res.data.message);
-					// 	return;
-					// }
-					
-					// if (res.data.result.data && res.data.result.data.active) {
 						this.postUserGetuserinfo();
-					// } else {
-					// 	this.$u.vuex('vuex_token', '');
-					// 	this.$u.route({
-					// 		type: 'redirect',
-					// 		url: '/pages/login/index'
-					// 	});
-					// }
-					
 				} else {
 					this.$u.route({
 						type: 'redirect',
@@ -61,9 +36,6 @@
 		},
 		onShow() {
 			this.checkLogin();
-		},
-		onHide() {
-			this.show=false
 		}
 	};
 
