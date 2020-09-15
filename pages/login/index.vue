@@ -1,16 +1,10 @@
 <template>
 	<view class="wrap">
-		<view class="bg">
-			<image src="../../static/img/bg.png" mode="widthFix"></image>
-		</view>
+		<view class="bg"><image src="../../static/img/bg.png" mode="widthFix"></image></view>
 		<view class="content">
 			<u-form :model="form" ref="uForm">
-				<u-form-item prop="username" label-width="0rpx">
-					<u-input placeholder="请输入用户名" v-model="form.username" />
-				</u-form-item>
-				<u-form-item prop="password" label-width="0rpx">
-					<u-input :password-icon="true" type="password" placeholder="请输入密码" v-model="form.password" />
-				</u-form-item>
+				<u-form-item prop="username" label-width="0rpx"><u-input placeholder="请输入用户名" v-model="form.username" /></u-form-item>
+				<u-form-item prop="password" label-width="0rpx"><u-input :password-icon="true" type="password" placeholder="请输入密码" v-model="form.password" /></u-form-item>
 				<u-form-item prop="imageCode" label-width="0rpx">
 					<view class="u-flex u-row-between">
 						<u-input placeholder="请输入验证码" v-model="form.imageCode" />
@@ -28,102 +22,110 @@
 </template>
 
 <script>
-
-	import mixins from './mixins.js'	
-	import config from '@/common/config.js'
-	
-	export default {
-		mixins: [mixins],
-		data() {
-			return {
-				form: {
-					username: 'superadmin',
-					password: 'sadmin@123',
-					imageCode: ''
-				},
-				rules: {
-					username: [{
+import { awaitWrap } from '@/common/tools';
+import { getMenu } from './menu.js';
+	import mixins from './mixins.js'
+export default {
+	mixins:[mixins],
+	data() {
+		return {
+			form: {
+				username: 'superadmin',
+				password: '123456',
+				imageCode: ''
+			},
+			rules: {
+				username: [
+					{
 						required: true,
 						message: '用户名不能为空',
 						trigger: 'blur'
-					}],
-					password: [{
+					}
+				],
+				password: [
+					{
 						required: true,
 						message: '密码不能为空',
 						trigger: 'blur'
-					}]
-				},
-				imageData: ''
-			};
-		},
-
-		methods: {
-			submit() {
-				this.$refs.uForm.validate(valid => {
-					if (valid) {
-						this.login(this.form);
 					}
-				});
+				]
 			},
-			async login(data) {
-				this.load('加载中...');			
-				const [err, res] = await uni.request({
-					url:config.baseUrl +'/heter-web-api/auth/form',
-					method:'POST',
-					data,
-					header: {
-						Authorization: 'Basic bXV3dS1jbGllbnQtYXV0aDptdXd1Q2xpZW50U2VjcmV0',
-						'Content-Type': 'application/x-www-form-urlencoded',
-						deviceId: this.vuex_deviceId
-					}
-				})
+			imageData: ''
+		};
+	},
 
-				if (err||res.data.code!==200) {
-					this.hide();
-					this.getImage();
-					this.fail(err||res.data.message);
-					this.form.imageCode = ''
-					return;
+	methods: {
+		submit() {
+			this.$refs.uForm.validate(valid => {
+				if (valid) {
+					this.login(this.form);
+				} else {
+					console.log('验证失败');
 				}
-				this.$u.vuex('vuex_token', res.data.result.access_token);
-				this.postUserGetuserinfo();
-			},
-			async getImage() {
-				const deviceId = this.$u.guid(20);
-				this.$u.vuex('vuex_deviceId', deviceId);
-				const [err, res] = await uni.request({
-					url:config.baseUrl +'/heter-web-api/auth/code/image',
-					method:'POST',
-					data: {},
-					header: {
+			});
+		},
+		async login(data) {
+			this.load('登录中...');
+			const [err, res] = await awaitWrap(
+				this.$u.post('/heter-web-api/auth/form', data, {
+					Authorization: 'Basic bXV3dS1jbGllbnQtYXV0aDptdXd1Q2xpZW50U2VjcmV0',
+					'Content-Type': 'application/x-www-form-urlencoded',
+					deviceId: this.vuex_deviceId
+				})
+			);
+			this.hide();
+			if (err) {
+				this.getImage();
+				this.fail(err);
+				return;
+			}
+
+			this.$u.vuex('vuex_token', res.access_token);
+			this.postUserGetuserinfo();
+		},
+		async getImage() {
+			const deviceId = this.$u.guid(20);
+			this.$u.vuex('vuex_deviceId', deviceId);
+
+			const [err, res] = await awaitWrap(
+				this.$u.post(
+					'/heter-web-api/auth/code/image',
+					{},
+					{
 						'Content-Type': 'application/x-www-form-urlencoded',
 						deviceId
 					}
-				})
-				
-
-				if (err||res.data.code!==200) {
-					this.fail(err||res.data.message);
-					return;
-				}
-				this.imageData = 'data:image/png;base64,' + res.data.result.replace(/[\r\n]/g, '');
+				)
+			);
+			if (err) {
+				this.fail(err);
+				return;
 			}
-		},
-		onShow() {
-			this.getImage();
-		},
-		onReady() {
-			this.$refs.uForm && this.$refs.uForm.setRules(this.rules);
-
+			this.imageData = 'data:image/png;base64,' + res.replace(/[\r\n]/g, '');
 		}
-	};
+	},
+	onShow() {
+		this.getImage();
+	},
+	onReady() {
+		this.$refs.uForm && this.$refs.uForm.setRules(this.rules);
+	}
+};
 </script>
 
 <style lang="scss" scoped>
-	@import './login.scss';
-
-	.wrap {
-		height: 100vh;
-		width: 100%;
+@import './login.scss';
+.wrap {
+	height: 100vh;
+	overflow: hidden;
+}
+.mask-warp {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	.rect {
+		background-color: #fff;
 	}
+}
 </style>

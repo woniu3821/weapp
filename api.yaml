@@ -5,7 +5,43 @@ info:
 schemes:
   - 'http'
 basePath: ''
-paths:
+paths:		  
+  /fertilizerRecord/queryFertilizerRecordsPage:
+    post:
+      description: '获取施肥记录'
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+		  
+  /fertilizerRecord/addFertilizerRecord:
+    post:
+      description: '新增施肥'
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+		  
+  /fertilizerRecord/updateFertilizerRecord:
+    post:
+      description: '更新施肥'
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+		  
+  /fertilizerRecord/deleteFertilizerRecord:
+    post:
+      description: '删除施肥'
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+		  
   /auth/logout:
     post:
       description: '退出登录'

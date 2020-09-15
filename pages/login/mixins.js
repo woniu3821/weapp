@@ -6,7 +6,7 @@ import {
 		methods: {
 			async postUserGetuserinfo() {
 				const [err, res] = await this.$u.api.postUcUserGetuserbasicinfo();
-				if (err) {
+				if (err||!res) {
 					this.fail(err);
 					this.hide();
 					this.showMask = false;
@@ -14,10 +14,10 @@ import {
 				}
 
 				this.$u.vuex('vuex_user', res);
-				// if(res.type===-1){
-				// 	this.fail('管理员请在pc登录');
-				// 	return;
-				// }
+				if(res.type===-1){
+					this.fail('管理员请在pc登录');
+					return;
+				}
 				
 				let [userType, tabs] = getMenu(res.type);
 				

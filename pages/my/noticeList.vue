@@ -86,6 +86,7 @@
 				this.hide();
 				if (err) {
 					this.fail(err);
+					this.loadStatus = 'nomore';
 					return;
 				}
 

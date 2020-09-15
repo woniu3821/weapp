@@ -14,6 +14,10 @@ const _basePath = (url) => {
 }
 
 export default {
+    fertilizerrecord_queryfertilizerrecordspage: _basePath('/fertilizerRecord/queryFertilizerRecordsPage'), // 获取施肥记录
+    fertilizerrecord_addfertilizerrecord: _basePath('/fertilizerRecord/addFertilizerRecord'), // 新增施肥
+    fertilizerrecord_updatefertilizerrecord: _basePath('/fertilizerRecord/updateFertilizerRecord'), // 更新施肥
+    fertilizerrecord_deletefertilizerrecord: _basePath('/fertilizerRecord/deleteFertilizerRecord'), // 删除施肥
     auth_logout: _basePath('/auth/logout'), // 退出登录
     user_getuserinfo: _basePath('/user/getUserInfo'), // 获取用户信息
     oauth_check_token: _basePath('/oauth/check_token'), // 检查登录状态

@@ -16,6 +16,50 @@ const apis={}
 
 const install = (Vue, vm) => {
 	/**
+	 * 获取施肥记录
+	 * @param { Object } params 请求参数
+	 * @param {  } params[''] 
+	 */
+	const  postFertilizerrecordQueryfertilizerrecordspage = async (params={},id='',header={auth:true}) => {
+	    // send request
+	    return awaitWrap(vm.$u.post(`${api.fertilizerrecord_queryfertilizerrecordspage+id}`, params, header))
+	}
+	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
+	apis.postFertilizerrecordQueryfertilizerrecordspage=postFertilizerrecordQueryfertilizerrecordspage
+	/**
+	 * 新增施肥
+	 * @param { Object } params 请求参数
+	 * @param {  } params[''] 
+	 */
+	const  postFertilizerrecordAddfertilizerrecord = async (params={},id='',header={auth:true}) => {
+	    // send request
+	    return awaitWrap(vm.$u.post(`${api.fertilizerrecord_addfertilizerrecord+id}`, params, header))
+	}
+	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
+	apis.postFertilizerrecordAddfertilizerrecord=postFertilizerrecordAddfertilizerrecord
+	/**
+	 * 更新施肥
+	 * @param { Object } params 请求参数
+	 * @param {  } params[''] 
+	 */
+	const  postFertilizerrecordUpdatefertilizerrecord = async (params={},id='',header={auth:true}) => {
+	    // send request
+	    return awaitWrap(vm.$u.post(`${api.fertilizerrecord_updatefertilizerrecord+id}`, params, header))
+	}
+	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
+	apis.postFertilizerrecordUpdatefertilizerrecord=postFertilizerrecordUpdatefertilizerrecord
+	/**
+	 * 删除施肥
+	 * @param { Object } params 请求参数
+	 * @param {  } params[''] 
+	 */
+	const  postFertilizerrecordDeletefertilizerrecord = async (params={},id='',header={auth:true}) => {
+	    // send request
+	    return awaitWrap(vm.$u.post(`${api.fertilizerrecord_deletefertilizerrecord+id}`, params, header))
+	}
+	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
+	apis.postFertilizerrecordDeletefertilizerrecord=postFertilizerrecordDeletefertilizerrecord
+	/**
 	 * 退出登录
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 

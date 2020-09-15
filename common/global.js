@@ -32,6 +32,11 @@ Vue.mixin({
 		},
 		hide() {
 			uni.hideLoading()
+		},
+		setTitle(title){
+			uni.setNavigationBarTitle({
+				title
+			});
 		}
 	}
 })

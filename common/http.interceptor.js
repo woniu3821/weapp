@@ -60,6 +60,7 @@ const install = (Vue, vm) => {
 					})
 				}
 			})
+			return;
 		}
 		
 		

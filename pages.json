@@ -68,6 +68,25 @@
 
 		},
 		{
+			"path": "pages/subLand/muck",
+			"style": {
+				"navigationBarTitleText": "施肥记录"
+			}
+		},
+		{
+			"path": "pages/subLand/muck-list",
+			"style": {
+				"navigationBarTitleText": "施肥历史记录"
+			}
+		},
+		{
+			"path": "pages/subLand/formula",
+			"style": {
+				"navigationBarTitleText": "施肥配方"
+			}
+
+		},
+		{
 			"path": "pages/tabs/tab0",
 			"style": {
 				"navigationBarTitleText": "诺丽农业"

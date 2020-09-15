@@ -11,9 +11,9 @@
 			<template v-if="active===0">
 				<Solid :params="params"></Solid>
 			</template>	
-			<template v-if="active===3">
-				<Muck :params="params"></Muck>
-			</template>
+<!-- 			<template v-if="active===4">
+				<MuckList :params="params"></MuckList>
+			</template> -->
 <!-- 			<template v-if="active===1">
 				<view class="image-box">
 					<image src="../../static/img/zjbb.png" mode="aspectFit"></image>
@@ -29,12 +29,10 @@
 <script>
 	import Bar from '@/components/bar.vue'
 	import Solid from './solid.vue'
-	import Muck from './muck.vue'
 	export default {
 		components: {
 			Bar,
-			Solid,
-			Muck
+			Solid
 		},
 		data() {
 			return {
@@ -57,36 +55,49 @@
 					},
 					{
 						icon: '../../static/img/fl.png',
-						title: '施肥'
+						title: '施肥记录'
 					},
 					{
 						icon: '../../static/img/sfjl_active.png',
-						title: '施肥记录'
+						title: '施肥历史'
 					}
 				]
 			}
 		},
-		onLoad(option) {
+		onLoad() {
+			this.params=this.vuex_landParams
 			uni.setNavigationBarTitle({
-				title: option.name
+				title: this.params.name
 			});
-			this.params = option;
+			
 		},
 		methods: {
 			setTitle(idx) {
+				
+				if(idx===3){
+					this.$u.route({
+						url:'/pages/subLand/muck'
+					})
+					return;
+				}
+				
+				if(idx===4){
+					this.$u.route({
+						url:'/pages/subLand/muck-list'
+					})
+					return;
+				}
+
+				
 				this.active = idx;
 				this.title = this.list[idx].title;
 				this.showTitle = false;
 				this.$nextTick(() => {
 					this.showTitle = true;
 				})
-			},
-			toMain() {
-				uni.navigateTo({
-					url: '/pages/outletsSub/main/index'
-				});
+				
 			}
-		}
+		},
 	};
 </script>
 <style>
@@ -117,7 +128,7 @@
 		margin: 0 auto;
 		border-radius: 5rpx;
 		background-color: #fff;
-		padding: 35rpx;
+		padding: 35rpx 0;
 		box-shadow: 0 3rpx 10rpx #eee;
 	}
 	.scroll{
