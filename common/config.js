@@ -1,4 +1,6 @@
+
+const isDev=process.env.NODE_ENV === 'development'
+
 export default {
-	// baseUrl:'http://172.31.16.244:8080'
-	baseUrl:'http://114.55.99.98'
+	baseUrl:isDev?'http://172.31.16.244:8080':'https://noninpk.com'
 }

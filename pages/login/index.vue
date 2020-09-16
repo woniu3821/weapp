@@ -24,14 +24,14 @@
 <script>
 import { awaitWrap } from '@/common/tools';
 import { getMenu } from './menu.js';
-	import mixins from './mixins.js'
+import mixins from './mixins.js';
 export default {
-	mixins:[mixins],
+	mixins: [mixins],
 	data() {
 		return {
 			form: {
-				username: 'superadmin',
-				password: '123456',
+				username: '',
+				password: '',
 				imageCode: ''
 			},
 			rules: {
@@ -97,7 +97,7 @@ export default {
 					}
 				)
 			);
-			if (err) {
+			if (err || !res) {
 				this.fail(err);
 				return;
 			}
