@@ -80,7 +80,7 @@ const roles={
 export function getMenu(role) {
 		let tag=''
 		for(let key in roles){
-			if(roles[key].indexOf(4)>-1){
+			if(roles[key].indexOf(0)>-1){
 				tag=key;
 			}
 		}
