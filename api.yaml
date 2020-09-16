@@ -15,6 +15,51 @@ paths:
         200:
           description: '请求成功'
 		  
+  /goods/addGoods:
+    post:
+      description: '添加商品'
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+		  
+  /goods/deleteGoods:
+    post:
+      description: '删除商品'
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+		  
+  /goods/updateGoods:
+    post:
+      description: '更新商品'
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+		  
+  /goods/getGoods:
+    post:
+      description: '获取商品详情'
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+		  
+  /goods/queryGoodssPage:
+    post:
+      description: '查询商品列表'
+      parameters:
+        - name: ''
+      responses:
+        200:
+          description: '请求成功'
+		  
   /fertilizerRecord/addFertilizerRecord:
     post:
       description: '新增施肥'

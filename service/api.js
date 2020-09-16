@@ -15,6 +15,11 @@ const _basePath = (url) => {
 
 export default {
     fertilizerrecord_queryfertilizerrecordspage: _basePath('/fertilizerRecord/queryFertilizerRecordsPage'), // 获取施肥记录
+    goods_addgoods: _basePath('/goods/addGoods'), // 添加商品
+    goods_deletegoods: _basePath('/goods/deleteGoods'), // 删除商品
+    goods_updategoods: _basePath('/goods/updateGoods'), // 更新商品
+    goods_getgoods: _basePath('/goods/getGoods'), // 获取商品详情
+    goods_querygoodsspage: _basePath('/goods/queryGoodssPage'), // 查询商品列表
     fertilizerrecord_addfertilizerrecord: _basePath('/fertilizerRecord/addFertilizerRecord'), // 新增施肥
     fertilizerrecord_updatefertilizerrecord: _basePath('/fertilizerRecord/updateFertilizerRecord'), // 更新施肥
     fertilizerrecord_deletefertilizerrecord: _basePath('/fertilizerRecord/deleteFertilizerRecord'), // 删除施肥

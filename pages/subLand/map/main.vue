@@ -4,7 +4,7 @@
 			<u-alert-tips type="warning" show-icon title="标记注意事项:" :description="description"></u-alert-tips>
 		</view>
 		<view class="map_container"><map v-if="renderShow" enable-satellite show-location @tap="makertap" class="map" id="mapArea"
-			 :markers="markers" :longitude="longitude" :latitude="latitude" :polygons="polygon"></map></view>
+			 :markers="markers" :polyline="polyline" :longitude="longitude" :latitude="latitude" :polygons="polygon"></map></view>
 		<view class="content">
 			<u-form :model="form" ref="uForm" label-width="150">
 				<u-form-item label="中心坐标">
@@ -72,11 +72,15 @@
 				list: [],
 				description: '请依次按顺序选择坐标点，三个点以上有效，如出现坐标交叉可清除重新标记',
 				fullHeight: '',
-
+				polyline: [{
+					points: [],
+					color: '#fa3534',
+					width: 1
+				}],
 				polygon: [{
 					points: [],
 					fillColor: '#19be6b33',
-					strokeColor: '#fff',
+					strokeColor: '#fa3534',
 					strokeWidth: 1
 				}],
 				markers: [],
@@ -136,15 +140,21 @@
 				this.polygon = [{
 					points: [],
 					fillColor: '#19be6b33',
-					strokeColor: '#fff',
+					strokeColor: '#fa3534',
 					strokeWidth: 1
 				}];
+				this.polyline = [{
+					points: [],
+					color: '#fa3534',
+					width: 1
+				}]
 				this.markers = [];
 				this.centerPoint = '';
 				this.form.farmlandCoordinates = [];
 				this.form.longitude = '';
 				this.form.latitude = '';
 				this.form.farmlandArea = '';
+				this.allpoint = []
 			},
 			async getRegin() {
 				const [err, res] = await this.$u.api.postChinaareaListchinaareatree({}, '', {
@@ -162,8 +172,11 @@
 					latitude: e.detail.latitude
 				};
 				this.polygon[0].points.push(point);
+				this.polyline[0].points.push(point);
 
 				this.allpoint.push(point);
+
+
 
 				if (this.allpoint.length > 2) {
 					const points = transPointsToBD(this.allpoint);
@@ -220,7 +233,7 @@
 						type: 'redirect',
 						url: '/pages/land/home/main'
 					})
-				},1500);
+				}, 1500);
 			},
 			getLocation() {
 				uni.getLocation({
@@ -247,14 +260,14 @@
 				if (res) {
 					this.getLocation();
 					this.getRegin();
-				}else{
+				} else {
 					this.$u.route({
-						type:'to',
-						url:'/pages/permission/main'
+						type: 'to',
+						url: '/pages/permission/main'
 					})
 				}
 			});
-			
+
 		},
 		onLoad() {
 
@@ -313,7 +326,7 @@
 <style lang="scss" scoped>
 	.map {
 		width: 100%;
-		height: 600rpx;
+		height: 70vh;
 	}
 
 	.deal {

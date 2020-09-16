@@ -27,6 +27,61 @@ const install = (Vue, vm) => {
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	apis.postFertilizerrecordQueryfertilizerrecordspage=postFertilizerrecordQueryfertilizerrecordspage
 	/**
+	 * 添加商品
+	 * @param { Object } params 请求参数
+	 * @param {  } params[''] 
+	 */
+	const  postGoodsAddgoods = async (params={},id='',header={auth:true}) => {
+	    // send request
+	    return awaitWrap(vm.$u.post(`${api.goods_addgoods+id}`, params, header))
+	}
+	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
+	apis.postGoodsAddgoods=postGoodsAddgoods
+	/**
+	 * 删除商品
+	 * @param { Object } params 请求参数
+	 * @param {  } params[''] 
+	 */
+	const  postGoodsDeletegoods = async (params={},id='',header={auth:true}) => {
+	    // send request
+	    return awaitWrap(vm.$u.post(`${api.goods_deletegoods+id}`, params, header))
+	}
+	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
+	apis.postGoodsDeletegoods=postGoodsDeletegoods
+	/**
+	 * 更新商品
+	 * @param { Object } params 请求参数
+	 * @param {  } params[''] 
+	 */
+	const  postGoodsUpdategoods = async (params={},id='',header={auth:true}) => {
+	    // send request
+	    return awaitWrap(vm.$u.post(`${api.goods_updategoods+id}`, params, header))
+	}
+	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
+	apis.postGoodsUpdategoods=postGoodsUpdategoods
+	/**
+	 * 获取商品详情
+	 * @param { Object } params 请求参数
+	 * @param {  } params[''] 
+	 */
+	const  postGoodsGetgoods = async (params={},id='',header={auth:true}) => {
+	    // send request
+	    return awaitWrap(vm.$u.post(`${api.goods_getgoods+id}`, params, header))
+	}
+	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
+	apis.postGoodsGetgoods=postGoodsGetgoods
+	/**
+	 * 查询商品列表
+	 * @param { Object } params 请求参数
+	 * @param {  } params[''] 
+	 */
+	const  postGoodsQuerygoodsspage = async (params={},id='',header={auth:true}) => {
+	    // send request
+	    return awaitWrap(vm.$u.post(`${api.goods_querygoodsspage+id}`, params, header))
+	}
+	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
+	apis.postGoodsQuerygoodsspage=postGoodsQuerygoodsspage
+	/**
 	 * 新增施肥
 	 * @param { Object } params 请求参数
 	 * @param {  } params[''] 

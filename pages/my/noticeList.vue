@@ -7,7 +7,7 @@
 		</view>
 		<view class="scroll-box">
 			<scroll-view scroll-y class="scroll-view" @scrolltolower="reachBottom">
-				<view class="item u-flex u-row-between" @click="toView(item)" v-for="(item,index) in activityData" :key="item.id">
+				<view class="item u-flex u-row-between" @click="toView(item)" v-for="(item,index) in list" :key="item.id">
 					<view class="left u-flex u-row-between">
 						<view :class="['dot',{active:!item.isRead}]"></view>
 						<view class="title u-line-1">
@@ -28,26 +28,27 @@
 </template>
 
 <script>
+		import mixins from '@/common/loadMixins.js'
 	export default {
+		mixins:[mixins],
 		data() {
 			return {
-				activityData: [],
-				loadStatus: 'loadmore',
-				init: true,
-				flag: false,
-				page: 1,
-				pageSize: 10,
-				beforePage: 1,
-				keyword: ''
+				service: 'postAnnouncementQueryannouncementspage'
 			};
 		},
-		methods: {
-			reload() {
-				this.getActivityData(true).then(() => {
-					this.flag = false
-				})
-
+		computed:{
+			params(){
+				return {
+					pageNum: this.page,
+					pageSize:this.pageSize,
+					keyword: this.keyword
+				}
 			},
+			list(){
+				return tranList(this.activityData)
+			}
+		},
+		methods: {
 			toView(item) {
 				const {
 					id,
@@ -65,73 +66,8 @@
 					}
 				})
 			},
-			reachBottom() {
-				// 当onShow的状态进行时，阻止加载更多再一次获取列表数据
-				this.getActivityData()
-			},
-			async getActivityData(initList = false, nowPageSize) {
-				if (initList) {
-					this.page = 1
-				}
-
-				let params = {
-					pageNum: this.page,
-					pageSize: nowPageSize || this.pageSize,
-					keyword: this.keyword
-				}
-
-				this.loadStatus = 'loading'
-				initList && this.load('加载中')
-				const [err, res] = await this.$u.api.postAnnouncementQueryannouncementspage(params)
-				this.hide();
-				if (err) {
-					this.fail(err);
-					this.loadStatus = 'nomore';
-					return;
-				}
-
-				const total = res.total;
-
-				initList ?
-					(this.activityData = tranList(res.data)) : (this.activityData = this.activityData.concat(tranList(res.data)))
-				this.page = this.page + 1
-				// 如果本次有传nowPageSize，将page还原为跳转前的页码，下一次再获取更多接着之前的页码和页数进行获取
-				if (nowPageSize) {
-					this.page = this.beforePage
-				}
-				if (this.activityData.length < total) {
-					this.loadStatus = 'loadmore'
-				} else {
-					this.loadStatus = 'nomore'
-				}
-			}
-		},
-		onLoad() {
-			if (this.init) {
-				this.getActivityData(true).then(() => {
-					this.init = false
-				})
-			}
-
-		},
-		onShow() {
-			// 阻止onLoad触发该逻辑
-			if (!this.init) {
-				// 防止底部的加载更多再次获取列表数据
-				this.flag = true
-				this.getActivityData(true, this.activityData.length).then(() => {
-					this.flag = false
-				})
-			}
-		},
-		onHide() {
-			// 页面离开记录当前的页码
-			this.beforePage = this.page
-		},
-		onReachBottom() {
-			// 当onShow的状态进行时，阻止加载更多再一次获取列表数据
-			!this.flag && this.getActivityData()
-		},
+			
+		}
 
 	}
 

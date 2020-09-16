@@ -8,8 +8,6 @@ import {
 				const [err, res] = await this.$u.api.postUcUserGetuserbasicinfo();
 				if (err||!res) {
 					this.fail(err);
-					this.hide();
-					this.showMask = false;
 					return;
 				}
 
@@ -21,10 +19,6 @@ import {
 				
 				let [userType, tabs] = getMenu(res.type);
 				
-				if(userType!='s1'){
-					this.fail('您暂无权限登录');
-					return;
-				}
 
 				let home = '/' + tabs[0].pagePath;
 				this.$u.vuex('vuex_home', home);
