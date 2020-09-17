@@ -87,6 +87,13 @@
 
 		},
 		{
+			"path": "pages/business/goods/edite",
+			"style": {
+				"navigationBarTitleText": "编辑商品"
+			}
+
+		},
+		{
 			"path": "pages/tabs/tab0",
 			"style": {
 				"navigationBarTitleText": "五个一服务"

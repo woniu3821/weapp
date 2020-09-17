@@ -73,14 +73,14 @@ const allMenus = {
 const roles={
 	s1:[4,5],//大户
 	s2:[0,1,2,3],//县耕
-	s3:[6,7]
+	s3:[6,7]//商家
 }
 
 
 export function getMenu(role) {
 		let tag=''
 		for(let key in roles){
-			if(roles[key].indexOf(4)>-1){
+			if(roles[key].indexOf(6)>-1){
 				tag=key;
 			}
 		}
