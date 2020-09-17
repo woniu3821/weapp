@@ -157,11 +157,16 @@
 				this.allpoint = []
 			},
 			async getRegin() {
-				const [err, res] = await this.$u.api.postChinaareaListchinaareatree({}, '', {
-					auth: false
-				});
-				if (err) {
-					this.fail(err);
+				const [err, res] = await uni.request({
+					method: 'POST',
+					url: config.baseUrl + '/heter-web-api/chinaArea/listChinaAreaTree',
+					header: {
+						'Content-Type': 'application/json;charset=UTF-8'
+					}
+				})
+
+				if (err || res.data.code !== 200) {
+					this.fail(err || res.data.message);
 					return;
 				}
 				this.list = trasRegion(res);
