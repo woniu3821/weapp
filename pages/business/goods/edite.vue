@@ -160,7 +160,7 @@
 				this.load();
 
 				const [err, res] = await uni.request({
-					url: config.baseUrl + '/heter-web-api/uc/user/register',
+					url: config.baseUrl + '/zeus-web-api/uc/user/register',
 					method: 'POST',
 					data: {
 						...this.form,

@@ -3,16 +3,6 @@
 		<view class="u-demo-wrap">
 			<view class="u-demo-area">
 				<u-toast ref="uToast"></u-toast>
-				<view class="pre-box" v-if="!showUploadList">
-					<view class="pre-item" v-for="(item, index) in lists" :key="index">
-						<image class="pre-item-image" :src="item.url" mode="aspectFill"></image>
-						<view class="u-delete-icon" @tap.stop="deleteItem(index)">
-							<u-icon name="close" size="20" color="#ffffff"></u-icon>
-						</view>
-						<u-line-progress v-if="item.progress > 0 && !item.error" :show-percent="false" height="16" class="u-progress"
-						 :percent="item.progress"></u-line-progress>
-					</view>
-				</view>
 				<u-upload ref="uUpload"  :show-upload-list="true" :action="action" :auto-upload="true" :file-list="fileList"
 				 :show-progress="showProgress" :deletable="deletable" :max-count="maxCount" @on-list-change="onListChange">
 				</u-upload>
@@ -32,8 +22,9 @@
 		},
 		data() {
 			return {
-				action: config.baseUrl+'/heter-web-api/file/fileUpload',
+				action: config.baseUrl+'/zeus-web-api/file/fileUpload',
 				showProgress: true,
+				showUploadList:true,
 				deletable: true,
 				customStyle: false,
 				maxCount: 4,

@@ -6,7 +6,7 @@ module.exports = {
 			disableHostCheck: true,
 			port: '8080', // 代理断就
 			proxy: {
-				'/heter-web-api': {
+				'/zeus-web-api': {
 					target: 'http://172.31.16.244:8080', // 目标代理接口地址
 					// target: 'http://iwecloud18:31185/', // 目标代理接口地址
 					secure: false,

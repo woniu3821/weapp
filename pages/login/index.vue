@@ -40,7 +40,7 @@
 		data() {
 			return {
 				form: {
-					username: 'superadmin',
+					username: '13222033333',
 					password: '123456',
 					imageCode: ''
 				},
@@ -73,7 +73,7 @@
 			async login(data) {
 				this.load('登录中...');
 				const [err, res] = await awaitWrap(
-					this.$u.post('/heter-web-api/auth/form', data, {
+					this.$u.post('/zeus-web-api/auth/form', data, {
 						Authorization: 'Basic bXV3dS1jbGllbnQtYXV0aDptdXd1Q2xpZW50U2VjcmV0',
 						'Content-Type': 'application/x-www-form-urlencoded',
 						deviceId: this.vuex_deviceId
@@ -94,7 +94,7 @@
 				this.$u.vuex('vuex_deviceId', deviceId);
 				const [err, res] = await awaitWrap(
 					this.$u.post(
-						'/heter-web-api/auth/code/image', {}, {
+						'/zeus-web-api/auth/code/image', {}, {
 							'Content-Type': 'application/x-www-form-urlencoded',
 							deviceId
 						}

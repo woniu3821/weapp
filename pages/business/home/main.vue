@@ -5,8 +5,8 @@
 		</view>
 		<view class="scroll-box">
 			<scroll-view scroll-y class="scroll-view" @scrolltolower="reachBottom">
-				<view class="item u-flex u-row-between" @click="toView(item)" v-for="(item, index) in list" :key="item.id">
-					<view class="left u-flex u-row-between"><image :src="item.fullPathMajorImg" @click="viewImag(item.fullPathMajorImg)" mode="aspectFit"></image></view>
+				<view class="item u-flex u-row-between" v-for="(item, index) in list" :key="item.id">
+					<view class="left u-flex u-row-between" @click="viewImag(item.fullPathMajorImg)"><image :src="item.fullPathMajorImg"  mode="aspectFit"></image></view>
 					<view class="right">
 						<view class="title u-flex u-row-between u-line-1">
 							<text>{{ item.name }}</text>
@@ -23,9 +23,6 @@
 				<u-loadmore :status="loadStatus" bgColor="#f2f2f2"></u-loadmore>
 			</scroll-view>
 		</view>
-		<u-modal v-model="show" width="90%" :show-title="false">
-			<view class="slot-content"><image :src="url" mode="widthFix"></image></view>
-		</u-modal>
 	</view>
 </template>
 
@@ -36,8 +33,6 @@ export default {
 	data() {
 		return {
 			service: 'postGoodsQuerygoodsspage',
-			show: false,
-			url: ''
 		};
 	},
 	computed: {
@@ -49,13 +44,19 @@ export default {
 			};
 		},
 		list() {
-			return tranList(this.activityData);
+			// return tranList(this.activityData);
+			return [{fullPathMajorImg:'../../../static/img/ryzs.png',name:'名称1',status:0},{name:'名称2'}]
 		}
 	},
 	methods: {
 		viewImag(url) {
-			this.url = url;
-			this.show = true;
+			console.log(url)
+			// uni.previewImage({
+			// 	urls:[url],
+			// 	fail(err){
+			// 		console.log(err)
+			// 	}
+			// })
 		},
 		toEdite(item) {
 			this.$u.route({
@@ -136,12 +137,12 @@ function tranList(data) {
 		.item {
 			padding: 30rpx 0;
 			box-sizing: border-box;
-			border-bottom: 1px solid #e4e7ed;
 			margin: 0 30rpx;
 
 			.left {
-				width: 120rpx;
-				height: 120rpx;
+				width: 140rpx;
+				height: 140rpx;
+				margin-right:20rpx;
 			}
 
 			.right {
@@ -150,6 +151,7 @@ function tranList(data) {
 				justify-content: space-between;
 				font-size: 28rpx;
 				color: #333;
+				border-bottom: 1px solid #e4e7ed;
 				.type {
 					color: #999999;
 				}
